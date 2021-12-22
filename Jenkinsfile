@@ -58,6 +58,11 @@ pipeline{
                 sh './gradlew --b ./build.gradle test'
                 //}
             }
+            /*post{
+                always {
+                    junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
+                }
+            }*/
         }
 		
 		stage('Static Code Analysis') {
