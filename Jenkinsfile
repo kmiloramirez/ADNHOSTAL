@@ -53,13 +53,10 @@ pipeline{
         }
         stage('Compilacion y Test Unitarios'){
             steps {
-                dir("${PROJECT_PATH_BACK}"){
-                    sh 'chmod +x gradlew'
-                    sh './gradlew build -x clean'
-                }
                 echo '------------>Test Backend<------------'
                 dir("${PROJECT_PATH_BACK}"){
                     sh 'chmod +x gradlew'
+                    sh './gradlew build clean'
                     sh './gradlew --stacktrace test'
                 }
             }
