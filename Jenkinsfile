@@ -79,7 +79,6 @@ pipeline{
         }
 
     post {
-        echo'llegue a post'
         failure {
             echo 'This will run only if failed'
             mail(
