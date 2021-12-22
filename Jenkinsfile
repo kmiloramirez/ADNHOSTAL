@@ -56,13 +56,12 @@ pipeline{
                 echo '------------>Test Backend<------------'
                 dir("${PROJECT_PATH_BACK}"){
                     sh 'chmod +x gradlew'
-                    sh './gradlew build clean'
+                    sh './gradlew clean'
                     sh './gradlew --stacktrace test'
                 }
             }
             post{
                 always {
-                    echo 'guardar pruebas'
                     junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
                 }
             }
@@ -97,7 +96,6 @@ pipeline{
         }
         success {
             echo 'This will run only if successful'
-            //junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
         }
     }
 }
