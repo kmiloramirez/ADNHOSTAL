@@ -88,7 +88,7 @@ pipeline{
         }
         success {
             echo 'This will run only if successful'
-            junit 'build/test-results/test/*.xml'
+            junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
         }
     }
 }
