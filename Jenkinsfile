@@ -1,4 +1,4 @@
-@Library('ceiba-jenkins-library@master') _
+@Library('ceiba-jenkins-library') _
 pipeline{
 	// any -> tomaria slave 5 u 8
 	// Para mobile se debe especificar el slave -> {label 'Slave_Mac'}
@@ -13,12 +13,10 @@ pipeline{
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
         disableConcurrentBuilds()
-        gitLabConnection('GitCeiba')
     }
 
     environment {
         PROJECT_PATH_BACK = 'microservicio'
-        //BRANCH_NAME = '*/main'
     }
 
     triggers {
@@ -82,18 +80,14 @@ pipeline{
 		}
 
         stage('Build'){
-            parallel {
-                stage('construcción Backend'){
-                    steps{
-                        echo "------------>Compilación backend<------------"
-                        dir("${PROJECT_PATH_BACK}"){
-                            sh './gradlew build -x test'
-                        }
+            steps{
+                echo "------------>Compilación backend<------------"
+                    dir("${PROJECT_PATH_BACK}"){
+                        sh './gradlew build -x test'
                     }
                 }
             }
-         }
-    }
+        }
 
     post {
         failure {
@@ -102,10 +96,10 @@ pipeline{
                 body:"Build failed in Jenkins: Project: ${env.JOB_NAME} Build /n Number: ${env.BUILD_NUMBER} URL de build: ${env.BUILD_NUMBER}/n/nPlease go to ${env.BUILD_URL} and verify the build",
                 subject: "ERROR CI: ${env.JOB_NAME}"
             )
-            updateGitlabCommitStatus name: 'IC Jenkins', state: 'failed'
         }
         success {
-            updateGitlabCommitStatus name: 'IC Jenkins', state: 'success'
+            echo 'This will run only if successful'
+            junit 'build/test-results/test/*.xml'
         }
     }
 }
