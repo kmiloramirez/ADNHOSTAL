@@ -3,12 +3,7 @@ pipeline{
 	// any -> tomaria slave 5 u 8
 	// Para mobile se debe especificar el slave -> {label 'Slave_Mac'}
 	// Para proyectos de arus se debe tomar el slave 6 o 7 -> {label 'Slave6'} o {label 'Slave7'}
-    //agent any
-
-    agent {
-        label 'Slave_Induccion'
-      }
-
+    agent any
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -57,18 +52,17 @@ pipeline{
         }
         stage('Compilacion y Test Unitarios'){
             steps {
-               // sh './gradle --clean'
                 echo '------------>Test Backend<------------'
-                dir("${PROJECT_PATH_BACK}"){
-                    sh 'chmod +x gradlew'
-                    sh './gradlew --stacktrace test'
-                }
+                //dir("${PROJECT_PATH_BACK}"){
+                sh 'chmod +x gradlew'
+                sh './gradlew --b ./build.gradle test'
+                //}
             }
-            post{
+            /*post{
                 always {
                     junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
                 }
-            }
+            }*/
         }
 		
 		stage('Static Code Analysis') {
