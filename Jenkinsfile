@@ -58,6 +58,12 @@ pipeline{
                     sh './gradlew --stacktrace test'
                 }
             }
+            post{
+                always {
+                    echo 'guardar pruebas'
+                    junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
+                }
+            }
         }
 		
 		stage('Static Code Analysis') {
@@ -89,7 +95,7 @@ pipeline{
         }
         success {
             echo 'This will run only if successful'
-            junit '/**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
+            //junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
         }
     }
 }
