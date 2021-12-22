@@ -3,7 +3,12 @@ pipeline{
 	// any -> tomaria slave 5 u 8
 	// Para mobile se debe especificar el slave -> {label 'Slave_Mac'}
 	// Para proyectos de arus se debe tomar el slave 6 o 7 -> {label 'Slave6'} o {label 'Slave7'}
-    agent any
+    //agent any
+
+    agent {
+        label 'Slave_Induccion'
+      }
+
 
     options {
         buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -13,6 +18,7 @@ pipeline{
 
     environment {
         PROJECT_PATH_BACK = 'microservicio'
+        BRANCH_NAME = '*/main'
     }
 
     triggers {
@@ -51,11 +57,7 @@ pipeline{
                     ])
             }
         }
-
         stage('Compilacion y Test Unitarios'){
-            // El "parallel" es si vamos a correr los test del frontend en paralelo con los test de backend, se configura en otro stage dentro de parallel
-            //parallel {
-              //  stage('Test- Backend'){
             steps {
                 sh 'gradle --b ./microservicio/build.gradle clean'
                 echo '------------>Test Backend<------------'
@@ -69,18 +71,6 @@ pipeline{
                     junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
                 }
             }
-                //}
-                /*
-                stage('Test- Frontend'){
-                    steps {
-                        echo '------------>Test Frontend<------------'
-                        dir("${PROJECT_PATH_FRONT}"){
-                            // comando ejecucion test
-                        }
-                    }
-                }
-                */
-            //}
         }
 		
 		stage('Static Code Analysis') {
