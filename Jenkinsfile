@@ -59,7 +59,7 @@ pipeline{
         }
         stage('Compilacion y Test Unitarios'){
             steps {
-                sh 'gradle --b ./microservicio/build.gradle clean'
+                sh './gradle --clean'
                 echo '------------>Test Backend<------------'
                 dir("${PROJECT_PATH_BACK}"){
                     sh 'chmod +x gradlew'
