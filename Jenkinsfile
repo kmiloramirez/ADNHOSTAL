@@ -62,7 +62,7 @@ pipeline{
 		
 		stage('Static Code Analysis') {
 			steps{
-				sonarqubeMasQualityGates(sonarKey:'co.com.ceiba.adn:hostal-juan.ramirez', 
+				sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:hostal-juan.ramirez',
 				sonarName:'CeibaADN-Hostal(juan.ramirez)', 
 				sonarPathProperties:'./sonar-project.properties')
 			}
