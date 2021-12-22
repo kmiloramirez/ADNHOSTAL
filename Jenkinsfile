@@ -12,7 +12,7 @@ pipeline{
     }
 
     environment {
-        PROJECT_PATH_BACK = 'hostal'
+        PROJECT_PATH_BACK = 'microservicio'
     }
 
     triggers {
