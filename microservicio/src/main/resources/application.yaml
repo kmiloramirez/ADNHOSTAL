@@ -1,6 +1,6 @@
 jasypt:
    encryptor:
-      password: ${jasyptpwd:secretkey}
+      password: ${jasyptpwd:adn-hostel}
       algorithm: PBEWithMD5AndDES
 
 server:
