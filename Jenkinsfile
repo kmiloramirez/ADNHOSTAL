@@ -21,6 +21,7 @@ pipeline{
 
     tools {
         jdk 'JDK11_Centos'
+        gradle 'Gradle5.6_Centos'
     }
 
     // Parametros disponibles en jenkins
