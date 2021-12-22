@@ -13,7 +13,6 @@ pipeline{
 
     environment {
         PROJECT_PATH_BACK = 'hostal'
-        BRANCH_NAME = '*/main'
     }
 
     triggers {
