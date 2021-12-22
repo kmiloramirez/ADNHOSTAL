@@ -18,7 +18,7 @@ pipeline{
 
     environment {
         PROJECT_PATH_BACK = 'microservicio'
-        BRANCH_NAME = '*/main'
+        //BRANCH_NAME = '*/main'
     }
 
     triggers {
