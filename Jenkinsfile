@@ -54,33 +54,34 @@ pipeline{
 
         stage('Compilacion y Test Unitarios'){
             // El "parallel" es si vamos a correr los test del frontend en paralelo con los test de backend, se configura en otro stage dentro de parallel
-            //parallel {
-            //stage('Test- Backend'){
-            steps {
-                echo '------------>Test Backend<------------'
-                dir("${PROJECT_PATH_BACK}"){
-                    sh 'chmod +x gradlew'
-                    sh './gradlew --stacktrace test'
-                }
-            }
-            post{
-                always {
-                    junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
-                }
-            }
-           // }
-            /*
-            stage('Test- Frontend'){
-                steps {
-                    echo '------------>Test Frontend<------------'
-                    dir("${PROJECT_PATH_FRONT}"){
-                        // comando ejecucion test
+            parallel {
+                stage('Test- Backend'){
+                    steps {
+                        sh 'gradle --b ./microservicio/build.gradle clean'
+                        echo '------------>Test Backend<------------'
+                        dir("${PROJECT_PATH_BACK}"){
+                            sh 'chmod +x gradlew'
+                            sh './gradlew --stacktrace test'
+                        }
+                    }
+                    post{
+                        always {
+                            junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
+                        }
                     }
                 }
+                /*
+                stage('Test- Frontend'){
+                    steps {
+                        echo '------------>Test Frontend<------------'
+                        dir("${PROJECT_PATH_FRONT}"){
+                            // comando ejecucion test
+                        }
+                    }
+                }
+                */
             }
-            */
         }
-   // }
 		
 		stage('Static Code Analysis') {
 			steps{
