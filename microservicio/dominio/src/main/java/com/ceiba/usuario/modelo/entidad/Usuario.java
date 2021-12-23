@@ -18,10 +18,10 @@ public class Usuario {
 
     private static final int LONGITUD_MINIMA_CLAVE = 4;
 
-    private final Long id;
-    private final String nombre;
-    private final String clave;
-    private final LocalDateTime fechaCreacion;
+    private Long id;
+    private String nombre;
+    private String clave;
+    private LocalDateTime fechaCreacion;
 
     public Usuario(Long id, String nombre, String clave, LocalDateTime fechaCreacion) {
         validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE_DE_USUARIO);

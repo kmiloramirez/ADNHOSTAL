@@ -15,10 +15,10 @@ public class Habitacion {
     private static final int CAMAS_MINIMAS = 1;
     private static final int CAMAS_MAXIMAS = 3;
 
-    private final String numero;
-    private final int camas;
-    private final double precio;
-    private final String descripcion;
+    private String numero;
+    private int camas;
+    private double precio;
+    private String descripcion;
 
     public Habitacion(String numero, int camas, double precio, String descripcion) {
 

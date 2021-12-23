@@ -20,11 +20,11 @@ public class Reserva {
     private static final String LA_FECHA_DE_SALIDA_DEBE_SER_MAYOR = "La fecha de salida debe ser mayor a la fecha de entrada";
 
     private int numeroReserva;
-    private final String nombre;
-    private final LocalDate fechaEntrada;
-    private final String numeroHabitacion;
-    private final LocalDate fechaSalida;
-    private final LocalDate fechaRegistro;
+    private String nombre;
+    private LocalDate fechaEntrada;
+    private String numeroHabitacion;
+    private LocalDate fechaSalida;
+    private LocalDate fechaRegistro;
     @Setter
     private double costoTotal;
     @Setter
