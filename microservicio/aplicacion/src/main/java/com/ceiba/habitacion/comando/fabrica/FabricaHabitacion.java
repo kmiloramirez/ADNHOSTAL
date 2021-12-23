@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FabricaHabitacion {
 
-    public Habitacion crear (ComandoHabitacion comandoHabitacion){
+    public Habitacion crear(ComandoHabitacion comandoHabitacion) {
         return new Habitacion(comandoHabitacion.getNumero(), comandoHabitacion.getCamas(),
                 comandoHabitacion.getPrecio(), comandoHabitacion.getDescripcion());
     }
