@@ -11,8 +11,8 @@ public class ServicioCalcularPrecioReserva {
     private final List<ReglaCobro> reglasCobros;
     private final RepositorioReserva repositorioReserva;
 
-    public ServicioCalcularPrecioReserva(List<ReglaCobro> reglaCobros, RepositorioReserva repositorioReserva) {
-        this.reglasCobros = reglaCobros;
+    public ServicioCalcularPrecioReserva(List<ReglaCobro> reglasCobros, RepositorioReserva repositorioReserva) {
+        this.reglasCobros = reglasCobros;
         this.repositorioReserva = repositorioReserva;
     }
 
