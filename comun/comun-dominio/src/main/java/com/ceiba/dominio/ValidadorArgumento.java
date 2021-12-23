@@ -1,5 +1,6 @@
 package com.ceiba.dominio;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +34,12 @@ public class ValidadorArgumento {
         }
     }
 
+    public static void validarNoVacio(String valor, String mensaje) {
+        if (valor.isEmpty()) {
+            throw new ExcepcionValorObligatorio(mensaje);
+        }
+    }
+
     public static void validarPositivo(Double valor, String mensaje) {
         if (valor <= 0) {
             throw new ExcepcionValorInvalido(mensaje);
@@ -51,14 +58,20 @@ public class ValidadorArgumento {
         }
     }
 
-    public static void validarMenor(LocalDateTime fechaInicial, LocalDateTime fechaFinal, String mensaje) {
-        if (fechaInicial.toLocalDate().isAfter(fechaFinal.toLocalDate())) {
+    public static void validarMenor(LocalDate fechaInicial, LocalDate fechaFinal, String mensaje) {
+        if (fechaInicial.isAfter(fechaFinal)) {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
 
-    public static void validarMenor(Long numeroInicial, Long numeroFinal, String mensaje) {
+    public static void validarMenor(int numeroInicial, int numeroFinal, String mensaje) {
         if (numeroInicial > numeroFinal) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
+    public static void validarMaximo(int numeroInicial, int numeroFinal, String mensaje) {
+        if (numeroInicial < numeroFinal) {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
@@ -91,6 +104,19 @@ public class ValidadorArgumento {
         try {
             Long.parseLong(valor);
         } catch (NumberFormatException numberFormatException) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
+    public static void validarFechaEntrada(LocalDate fechaEntrada, String mensaje){
+        LocalDate fechaActual = LocalDate.now();
+        if(!(fechaEntrada.isAfter(fechaActual) || fechaEntrada.isEqual(fechaActual))){
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
+    public static void  validarFechasReserva(LocalDate fechaEntrada, LocalDate fechaSalida, String mensaje){
+        if(! (fechaEntrada.isBefore(fechaSalida))){
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
