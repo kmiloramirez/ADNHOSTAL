@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/reserva")
-@Api(tags = { "Controlador comando reserva"})
+@Api(tags = {"Controlador comando reserva"})
 public class ComandoControladorReserva {
 
     private final ManejadorCrearReserva manejadorCrearReserva;
@@ -24,7 +24,7 @@ public class ComandoControladorReserva {
 
     @PostMapping
     @ApiOperation("Crear Reservacion")
-    public ComandoRespuesta<Long> crear(@RequestBody ComandoReserva comandoReserva){
+    public ComandoRespuesta<Long> crear(@RequestBody ComandoReserva comandoReserva) {
         return manejadorCrearReserva.ejecutar(comandoReserva);
     }
 }

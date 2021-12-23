@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/habitacion")
-@Api(tags = { "Controlador comando habitacion"})
+@Api(tags = {"Controlador comando habitacion"})
 public class ComandoControladorHabitacion {
 
     private final ManejadorCrearHabitacion manejadorCrearHabitacion;

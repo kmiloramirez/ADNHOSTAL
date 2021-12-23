@@ -1,22 +1,19 @@
 package com.ceiba.usuario.adaptador.dao;
 
-import java.util.List;
-
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.usuario.modelo.dto.DtoUsuario;
 import com.ceiba.usuario.puerto.dao.DaoUsuario;
-
 import org.springframework.stereotype.Component;
 
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
+import java.util.List;
 
 @Component
 public class DaoUsuarioMysql implements DaoUsuario {
 
-    private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
-
-    @SqlStatement(namespace="usuario", value="listar")
+    @SqlStatement(namespace = "usuario", value = "listar")
     private static String sqlListar;
+    private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     public DaoUsuarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;

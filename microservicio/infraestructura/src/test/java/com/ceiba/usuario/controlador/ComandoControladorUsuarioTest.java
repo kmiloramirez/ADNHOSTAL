@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ComandoControladorUsuario.class)
-@ContextConfiguration(classes= ApplicationMock.class)
+@ContextConfiguration(classes = ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class ComandoControladorUsuarioTest {
 
@@ -33,27 +33,27 @@ class ComandoControladorUsuarioTest {
 
     @Test
     @DisplayName("Deberia crear un usuario")
-    void deberiaCrearUnUsuario() throws Exception{
+    void deberiaCrearUnUsuario() throws Exception {
         // arrange
         ComandoUsuario usuario = new ComandoUsuarioTestDataBuilder().build();
         // act - assert
         mocMvc.perform(post("/usuarios")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(usuario)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(usuario)))
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'valor': 2}"));
     }
 
     @Test
     @DisplayName("Deberia actualizar un usuario")
-    void deberiaActualizarUnUsuario() throws Exception{
+    void deberiaActualizarUnUsuario() throws Exception {
         // arrange
         Long id = 1L;
         ComandoUsuario usuario = new ComandoUsuarioTestDataBuilder().build();
         // act - assert
-        mocMvc.perform(put("/usuarios/{id}",id)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(usuario)))
+        mocMvc.perform(put("/usuarios/{id}", id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(usuario)))
                 .andExpect(status().isOk());
     }
 
@@ -63,13 +63,13 @@ class ComandoControladorUsuarioTest {
         // arrange
         Long id = 1L;
         // act - assert
-        mocMvc.perform(delete("/usuarios/{id}",id)
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+        mocMvc.perform(delete("/usuarios/{id}", id)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
         mocMvc.perform(get("/usuarios")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(0)));
     }
