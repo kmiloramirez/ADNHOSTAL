@@ -3,10 +3,10 @@ package com.ceiba.reserva.cobro;
 import java.time.LocalDate;
 
 public class ReglaCobroDescuentoPorDias implements ReglaCobro {
-    private final static double DESCUENTO = 0.10;
-    private final static int DIAS_MINIMO_DESCUENTO = 5;
-    private final static double CERO = 0.0;
-    private final static double MENOS_UNO = -1.0;
+    private static final double DESCUENTO = 0.10;
+    private static final int DIAS_MINIMO_DESCUENTO = 5;
+    private static final double CERO = 0.0;
+    private static final double MENOS_UNO = -1.0;
 
     @Override
     public double cobrar(LocalDate fechaEntrada, LocalDate fechaSalida, double precioHabitacion) {

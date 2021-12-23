@@ -4,9 +4,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class ReglaCobroSabadoYDomingo implements ReglaCobro {
-    private final static double SOBRECOSTO = 0.15;
-    private final static DayOfWeek SABADO = DayOfWeek.SATURDAY;
-    private final static DayOfWeek DOMINGO = DayOfWeek.SUNDAY;
+    private static final double SOBRECOSTO = 0.15;
+    private static final DayOfWeek SABADO = DayOfWeek.SATURDAY;
+    private static final DayOfWeek DOMINGO = DayOfWeek.SUNDAY;
 
 
     @Override

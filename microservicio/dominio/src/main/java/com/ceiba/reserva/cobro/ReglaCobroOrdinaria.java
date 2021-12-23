@@ -5,8 +5,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class ReglaCobroOrdinaria implements ReglaCobro {
-    private final static DayOfWeek JUEVES = DayOfWeek.THURSDAY;
-    private final static DayOfWeek VIERNES = DayOfWeek.FRIDAY;
+    private static final DayOfWeek JUEVES = DayOfWeek.THURSDAY;
+    private static final DayOfWeek VIERNES = DayOfWeek.FRIDAY;
 
     @Override
     public double cobrar(LocalDate fechaEntrada, LocalDate fechaSalida, double precioHabitacion) {

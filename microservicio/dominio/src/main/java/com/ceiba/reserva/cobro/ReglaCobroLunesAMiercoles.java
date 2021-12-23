@@ -5,10 +5,10 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class ReglaCobroLunesAMiercoles implements ReglaCobro {
-    private final static double DESCUENTO = 0.20;
-    private final static DayOfWeek LUNES = DayOfWeek.MONDAY;
-    private final static DayOfWeek MARTES = DayOfWeek.TUESDAY;
-    private final static DayOfWeek MIERCOLES = DayOfWeek.WEDNESDAY;
+    private static final double DESCUENTO = 0.20;
+    private static final DayOfWeek LUNES = DayOfWeek.MONDAY;
+    private static final DayOfWeek MARTES = DayOfWeek.TUESDAY;
+    private static final DayOfWeek MIERCOLES = DayOfWeek.WEDNESDAY;
 
 
     @Override
