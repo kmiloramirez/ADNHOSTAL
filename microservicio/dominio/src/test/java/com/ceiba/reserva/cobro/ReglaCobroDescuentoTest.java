@@ -18,23 +18,23 @@ class ReglaCobroDescuentoTest {
 
     @Test
     void cobrarSinDescuento() {
-        LocalDate fechaEntrada = LocalDate.of(2021,12,20);
-        LocalDate fechaSalida = LocalDate.of(2021,12,23);
+        LocalDate fechaEntrada = LocalDate.of(2021, 12, 20);
+        LocalDate fechaSalida = LocalDate.of(2021, 12, 23);
         double precioHabitacion = 100.0;
 
-        double resultado = reglaCobroDescuento.cobrar(fechaEntrada,fechaSalida,precioHabitacion);
+        double resultado = reglaCobroDescuento.cobrar(fechaEntrada, fechaSalida, precioHabitacion);
 
-        assertEquals(0.0,resultado);
+        assertEquals(0.0, resultado);
     }
 
     @Test
     void cobrarConDescuento() {
-        LocalDate fechaEntrada = LocalDate.of(2021,12,20);
-        LocalDate fechaSalida = LocalDate.of(2021,12,25);
+        LocalDate fechaEntrada = LocalDate.of(2021, 12, 20);
+        LocalDate fechaSalida = LocalDate.of(2021, 12, 25);
         double precioHabitacion = 100.0;
 
-        double resultado = reglaCobroDescuento.cobrar(fechaEntrada,fechaSalida,precioHabitacion);
+        double resultado = reglaCobroDescuento.cobrar(fechaEntrada, fechaSalida, precioHabitacion);
 
-        assertEquals(-50.0,resultado);
+        assertEquals(-50.0, resultado);
     }
 }

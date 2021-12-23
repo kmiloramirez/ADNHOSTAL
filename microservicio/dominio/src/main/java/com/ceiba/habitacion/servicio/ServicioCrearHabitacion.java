@@ -14,14 +14,14 @@ public class ServicioCrearHabitacion {
         this.repositorioHabitacion = repositorioHabitacion;
     }
 
-    public Long ejecutar(Habitacion habitacion){
+    public Long ejecutar(Habitacion habitacion) {
         existeHabitacion(habitacion.getNumero());
         return repositorioHabitacion.crear(habitacion);
 
     }
 
-    private void existeHabitacion(String numeroHabitacion){
-        if(repositorioHabitacion.existe(numeroHabitacion)){
+    private void existeHabitacion(String numeroHabitacion) {
+        if (repositorioHabitacion.existe(numeroHabitacion)) {
             throw new ExcepcionDuplicidad(LA_HABITCION_EXISTE);
         }
     }

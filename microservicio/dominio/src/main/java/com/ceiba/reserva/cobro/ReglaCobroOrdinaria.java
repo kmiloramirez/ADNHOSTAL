@@ -1,11 +1,10 @@
 package com.ceiba.reserva.cobro;
 
 
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-public class ReglaCobroOrdinaria implements ReglaCobro{
+public class ReglaCobroOrdinaria implements ReglaCobro {
     private final static DayOfWeek JUEVES = DayOfWeek.THURSDAY;
     private final static DayOfWeek VIERNES = DayOfWeek.FRIDAY;
 

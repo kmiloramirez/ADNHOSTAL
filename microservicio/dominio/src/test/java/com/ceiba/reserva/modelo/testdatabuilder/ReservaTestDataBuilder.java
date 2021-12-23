@@ -23,28 +23,33 @@ public class ReservaTestDataBuilder {
     }
 
     public ReservaTestDataBuilder conNombre(String nombre) {
-        this.nombre = nombre;return this;
+        this.nombre = nombre;
+        return this;
     }
 
     public ReservaTestDataBuilder conFechaEntrada(LocalDate fechaEntrada) {
-        this.fechaEntrada = fechaEntrada;return this;
+        this.fechaEntrada = fechaEntrada;
+        return this;
     }
 
     public ReservaTestDataBuilder conNumeroHabitacion(String numeroHabitacion) {
-        this.numeroHabitacion = numeroHabitacion;return this;
+        this.numeroHabitacion = numeroHabitacion;
+        return this;
     }
 
     public ReservaTestDataBuilder conFechaSalida(LocalDate fechaSalida) {
-        this.fechaSalida = fechaSalida;return this;
+        this.fechaSalida = fechaSalida;
+        return this;
     }
 
     public ReservaTestDataBuilder conFechaRegistro(LocalDate fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;return this;
+        this.fechaRegistro = fechaRegistro;
+        return this;
     }
 
 
-    public Reserva build(){
-        return new Reserva(nombre,fechaEntrada,numeroHabitacion,fechaSalida,fechaRegistro);
+    public Reserva build() {
+        return new Reserva(nombre, fechaEntrada, numeroHabitacion, fechaSalida, fechaRegistro);
     }
 
 

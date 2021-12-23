@@ -16,11 +16,11 @@ public class ServicioCalcularPrecioReserva {
         this.repositorioReserva = repositorioReserva;
     }
 
-    public Reserva ejecutar(Reserva reserva){
+    public Reserva ejecutar(Reserva reserva) {
         double precioHabitacion = repositorioReserva.precioHabitacion(reserva.getNumeroHabitacion());
         reglasCobros.forEach(reglaCobro -> {
-            double precioRegla =reglaCobro.cobrar(reserva.getFechaEntrada(),reserva.getFechaSalida(),precioHabitacion);
-            reserva.setCostoTotal(reserva.getCostoTotal()+precioRegla);
+            double precioRegla = reglaCobro.cobrar(reserva.getFechaEntrada(), reserva.getFechaSalida(), precioHabitacion);
+            reserva.setCostoTotal(reserva.getCostoTotal() + precioRegla);
         });
         return reserva;
     }

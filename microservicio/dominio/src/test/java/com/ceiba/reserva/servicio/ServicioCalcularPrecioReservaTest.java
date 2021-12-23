@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ServicioCalcularPrecioReservaTest {
 
@@ -26,19 +26,19 @@ class ServicioCalcularPrecioReservaTest {
         reglaCobro = Mockito.mock(ReglaCobro.class);
         reglasCobros.add(reglaCobro);
         repositorioReserva = Mockito.mock(RepositorioReserva.class);
-        servicioCalcularPrecioReserva = new ServicioCalcularPrecioReserva(reglasCobros,repositorioReserva);
+        servicioCalcularPrecioReserva = new ServicioCalcularPrecioReserva(reglasCobros, repositorioReserva);
     }
 
     @Test
     void ejecutar() {
         Reserva reserva = new ReservaTestDataBuilder().build();
-        double precioHabitacion=100.0;
-        double precioTotal=200.0;
+        double precioHabitacion = 100.0;
+        double precioTotal = 200.0;
         Mockito.doReturn(precioHabitacion).when(repositorioReserva).precioHabitacion(reserva.getNumeroHabitacion());
-        Mockito.doReturn(precioTotal).when(reglaCobro).cobrar(reserva.getFechaEntrada(),reserva.getFechaSalida(),precioHabitacion);
+        Mockito.doReturn(precioTotal).when(reglaCobro).cobrar(reserva.getFechaEntrada(), reserva.getFechaSalida(), precioHabitacion);
 
         Reserva resultado = servicioCalcularPrecioReserva.ejecutar(reserva);
 
-        assertEquals(precioTotal,reserva.getCostoTotal());
+        assertEquals(precioTotal, reserva.getCostoTotal());
     }
 }

@@ -36,7 +36,7 @@ public class HabitacionTestDataBuilder {
         return this;
     }
 
-    public Habitacion build (){
-        return new Habitacion(numero,camas,precio,descripcion);
+    public Habitacion build() {
+        return new Habitacion(numero, camas, precio, descripcion);
     }
 }

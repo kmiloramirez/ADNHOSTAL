@@ -9,12 +9,15 @@ public interface RepositorioReserva {
 
     /**
      * Permite crear una reserva
+     *
      * @param reserva
      * @return el id generado
      */
     Long crear(Reserva reserva);
+
     /**
      * Permite validar si existe una habitacion para realizar la reserva
+     *
      * @param numeroHabitacion
      * @return si existe la habitacion
      */
@@ -24,6 +27,7 @@ public interface RepositorioReserva {
      * Permite validar disponibilidad de la habitacion para realizar la reserva
      * si se encuenta una reserva ya existente con fecha de salida menor a la de entrada
      * se debe validar la fecha de salida de sea menor a la entrada de la nueva reserva
+     *
      * @param numeroHabitacion
      * @param fechaEntrada
      * @param fechaSalida
@@ -33,6 +37,7 @@ public interface RepositorioReserva {
 
     /**
      * Permite consultar el precio de una habitacion reservada
+     *
      * @param numeroHabitacion
      * @return si existe la habitacion
      */

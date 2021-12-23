@@ -6,6 +6,7 @@ public interface RepositorioHabitacion {
 
     /**
      * Permite crear una habitacion
+     *
      * @param habitacion
      * @return el id generado
      */
@@ -13,6 +14,7 @@ public interface RepositorioHabitacion {
 
     /**
      * Permite validar si existe una habitacion por su numero
+     *
      * @param numero
      * @return si existe o no
      */

@@ -15,20 +15,20 @@ public class Habitacion {
     private static final int CAMAS_MINIMAS = 1;
     private static final int CAMAS_MAXIMAS = 3;
 
-    private String numero;
-    private int camas;
-    private double precio;
-    private String descripcion;
+    private final String numero;
+    private final int camas;
+    private final double precio;
+    private final String descripcion;
 
     public Habitacion(String numero, int camas, double precio, String descripcion) {
 
-        validarObligatorio(numero,SE_DEBE_INGRESAR_NUMERO_HABITACION);
-        validarNoVacio(numero,SE_DEBE_INGRESAR_NUMERO_HABITACION);
-        validarObligatorio(descripcion,SE_DEBE_INGRESAR_DESCRIPCION_HABITACION);
-        validarNoVacio(descripcion,SE_DEBE_INGRESAR_DESCRIPCION_HABITACION);
-        validarPositivo(precio,EL_PRECIO_DEBE_POSITIVO);
-        validarMenor(CAMAS_MINIMAS,camas,String.format(LA_HABITACION_MINIMO_CAMA,CAMAS_MINIMAS));
-        validarMaximo(CAMAS_MAXIMAS,camas,String.format(LA_HABITACION_MAXIMA_CAMA,CAMAS_MAXIMAS));
+        validarObligatorio(numero, SE_DEBE_INGRESAR_NUMERO_HABITACION);
+        validarNoVacio(numero, SE_DEBE_INGRESAR_NUMERO_HABITACION);
+        validarObligatorio(descripcion, SE_DEBE_INGRESAR_DESCRIPCION_HABITACION);
+        validarNoVacio(descripcion, SE_DEBE_INGRESAR_DESCRIPCION_HABITACION);
+        validarPositivo(precio, EL_PRECIO_DEBE_POSITIVO);
+        validarMenor(CAMAS_MINIMAS, camas, String.format(LA_HABITACION_MINIMO_CAMA, CAMAS_MINIMAS));
+        validarMaximo(CAMAS_MAXIMAS, camas, String.format(LA_HABITACION_MAXIMA_CAMA, CAMAS_MAXIMAS));
 
         this.numero = numero;
         this.camas = camas;

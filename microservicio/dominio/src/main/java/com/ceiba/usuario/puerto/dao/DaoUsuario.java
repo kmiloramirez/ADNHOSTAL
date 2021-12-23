@@ -8,6 +8,7 @@ public interface DaoUsuario {
 
     /**
      * Permite listar usuarios
+     *
      * @return los usuarios
      */
     List<DtoUsuario> listar();

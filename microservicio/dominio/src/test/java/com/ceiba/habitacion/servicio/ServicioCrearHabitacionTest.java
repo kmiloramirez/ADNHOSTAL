@@ -3,13 +3,13 @@ package com.ceiba.habitacion.servicio;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.habitacion.modelo.entidad.Habitacion;
-import com.ceiba.habitacion.puerto.repositorio.RepositorioHabitacion;
 import com.ceiba.habitacion.modelo.testdatabuilder.HabitacionTestDataBuilder;
+import com.ceiba.habitacion.puerto.repositorio.RepositorioHabitacion;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ServicioCrearHabitacionTest {
 
@@ -18,7 +18,7 @@ class ServicioCrearHabitacionTest {
 
     @BeforeEach
     void setUp() {
-        repositorioHabitacion =Mockito.mock(RepositorioHabitacion.class);
+        repositorioHabitacion = Mockito.mock(RepositorioHabitacion.class);
         servicioCrearHabitacion = new ServicioCrearHabitacion(repositorioHabitacion);
     }
 
@@ -31,7 +31,7 @@ class ServicioCrearHabitacionTest {
 
         Long idHabitacion = servicioCrearHabitacion.ejecutar(habitacion);
 
-        assertEquals(10L,idHabitacion);
+        assertEquals(10L, idHabitacion);
         Mockito.verify(repositorioHabitacion).crear(habitacion);
 
 
@@ -45,7 +45,7 @@ class ServicioCrearHabitacionTest {
 
         BasePrueba.assertThrows(() -> {
             servicioCrearHabitacion.ejecutar(habitacion);
-        }, ExcepcionDuplicidad.class,"Ya existe esta habitcion");
+        }, ExcepcionDuplicidad.class, "Ya existe esta habitcion");
 
 
     }

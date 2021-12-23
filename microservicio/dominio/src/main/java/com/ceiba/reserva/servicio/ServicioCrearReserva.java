@@ -21,22 +21,22 @@ public class ServicioCrearReserva {
         this.servicioCalcularPrecioReserva = servicioCalcularPrecioReserva;
     }
 
-    public Long ejecutar(Reserva reserva){
+    public Long ejecutar(Reserva reserva) {
         validarHabitacionExiste(reserva.getNumeroHabitacion());
-        validarDisponibilidad(reserva.getNumeroHabitacion(),reserva.getFechaEntrada(),reserva.getFechaSalida());
+        validarDisponibilidad(reserva.getNumeroHabitacion(), reserva.getFechaEntrada(), reserva.getFechaSalida());
         reserva.setEstadoReserva(EstadoReserva.RESEVADO.getEstado());
         reserva = servicioCalcularPrecioReserva.ejecutar(reserva);
         return repositorioReserva.crear(reserva);
     }
 
     private void validarHabitacionExiste(String numeroHabitacion) {
-        if(!repositorioReserva.existeHabitacion(numeroHabitacion)){
+        if (!repositorioReserva.existeHabitacion(numeroHabitacion)) {
             throw new ExcepcionSinDatos(LA_HABITCION_NO_EXISTE);
         }
     }
 
     private void validarDisponibilidad(String numeroHabitacion, LocalDate fechaEntrada, LocalDate fechaSalida) {
-        if(!repositorioReserva.disponibilidadHabitacion(numeroHabitacion,fechaEntrada,fechaSalida)){
+        if (!repositorioReserva.disponibilidadHabitacion(numeroHabitacion, fechaEntrada, fechaSalida)) {
             throw new ExcepcionDuplicidad(LA_HABITCION_NO_DISPONIBLE);
         }
     }

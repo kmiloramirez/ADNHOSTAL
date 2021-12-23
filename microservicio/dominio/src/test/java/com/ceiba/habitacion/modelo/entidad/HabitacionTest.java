@@ -6,22 +6,22 @@ import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.habitacion.modelo.testdatabuilder.HabitacionTestDataBuilder;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HabitacionTest {
 
     @Test
-    void crearHabitacionSinError (){
-      Habitacion habitacion = new HabitacionTestDataBuilder().build();
+    void crearHabitacionSinError() {
+        Habitacion habitacion = new HabitacionTestDataBuilder().build();
 
-      assertEquals("101" ,habitacion.getNumero());
-      assertEquals(1 ,habitacion.getCamas());
-      assertEquals(120000 ,habitacion.getPrecio());
-      assertEquals("prueba" ,habitacion.getDescripcion());
+        assertEquals("101", habitacion.getNumero());
+        assertEquals(1, habitacion.getCamas());
+        assertEquals(120000, habitacion.getPrecio());
+        assertEquals("prueba", habitacion.getDescripcion());
     }
 
     @Test
-    void crearHabitacionConErrorNumero (){
+    void crearHabitacionConErrorNumero() {
         HabitacionTestDataBuilder habitacionTestDataBuilder = new HabitacionTestDataBuilder().conNumero(null);
 
 
@@ -33,7 +33,7 @@ class HabitacionTest {
     }
 
     @Test
-    void crearHabitacionConErrorNumeroVacio (){
+    void crearHabitacionConErrorNumeroVacio() {
         HabitacionTestDataBuilder habitacionTestDataBuilder = new HabitacionTestDataBuilder().conNumero("");
 
 
@@ -45,7 +45,7 @@ class HabitacionTest {
     }
 
     @Test
-    void crearHabitacionConErrorCamasMinimas (){
+    void crearHabitacionConErrorCamasMinimas() {
         HabitacionTestDataBuilder habitacionTestDataBuilder = new HabitacionTestDataBuilder().conCamas(0);
 
         BasePrueba.assertThrows(() -> {
@@ -55,7 +55,7 @@ class HabitacionTest {
     }
 
     @Test
-    void crearHabitacionConErrorPrecioNegativo (){
+    void crearHabitacionConErrorPrecioNegativo() {
         HabitacionTestDataBuilder habitacionTestDataBuilder = new HabitacionTestDataBuilder().conPrecio(-10);
 
         BasePrueba.assertThrows(() -> {
@@ -65,7 +65,7 @@ class HabitacionTest {
     }
 
     @Test
-    void crearHabitacionConErrorCamasMaximas (){
+    void crearHabitacionConErrorCamasMaximas() {
         HabitacionTestDataBuilder habitacionTestDataBuilder = new HabitacionTestDataBuilder().conCamas(4);
 
         BasePrueba.assertThrows(() -> {
@@ -75,7 +75,7 @@ class HabitacionTest {
     }
 
     @Test
-    void crearHabitacionConErrorDescripcion (){
+    void crearHabitacionConErrorDescripcion() {
         HabitacionTestDataBuilder habitacionTestDataBuilder = new HabitacionTestDataBuilder().conDescripcion(null);
 
 
@@ -87,7 +87,7 @@ class HabitacionTest {
     }
 
     @Test
-    void crearHabitacionConErrorDescripcionVacio (){
+    void crearHabitacionConErrorDescripcionVacio() {
         HabitacionTestDataBuilder habitacionTestDataBuilder = new HabitacionTestDataBuilder().conDescripcion("");
 
 
