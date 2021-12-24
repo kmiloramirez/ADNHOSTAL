@@ -4,7 +4,6 @@ import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.reserva.cobro.ReglaCobro;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.modelo.testdatabuilder.ReservaTestDataBuilder;
-import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -19,7 +18,6 @@ class ServicioCalcularPrecioReservaTest {
     private ServicioCalcularPrecioReserva servicioCalcularPrecioReserva;
     private List<ReglaCobro> reglasCobros;
     private ReglaCobro reglaCobro;
-    private RepositorioReserva repositorioReserva;
     private DaoHabitacion daoHabitacion;
 
     @BeforeEach
@@ -27,9 +25,8 @@ class ServicioCalcularPrecioReservaTest {
         reglasCobros = new ArrayList<>();
         reglaCobro = Mockito.mock(ReglaCobro.class);
         reglasCobros.add(reglaCobro);
-        repositorioReserva = Mockito.mock(RepositorioReserva.class);
         daoHabitacion = Mockito.mock(DaoHabitacion.class);
-        servicioCalcularPrecioReserva = new ServicioCalcularPrecioReserva(reglasCobros, repositorioReserva, daoHabitacion);
+        servicioCalcularPrecioReserva = new ServicioCalcularPrecioReserva(reglasCobros, daoHabitacion);
     }
 
     @Test
