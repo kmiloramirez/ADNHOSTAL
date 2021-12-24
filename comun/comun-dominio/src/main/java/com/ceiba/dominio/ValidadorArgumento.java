@@ -108,15 +108,15 @@ public class ValidadorArgumento {
         }
     }
 
-    public static void validarFechaEntrada(LocalDate fechaEntrada, String mensaje){
+    public static void validarFechaEntrada(LocalDateTime fechaEntrada, String mensaje){
         LocalDate fechaActual = LocalDate.now();
-        if(!(fechaEntrada.isAfter(fechaActual) || fechaEntrada.isEqual(fechaActual))){
+        if(!(fechaEntrada.toLocalDate().isAfter(fechaActual) || fechaEntrada.toLocalDate().isEqual(fechaActual))){
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
 
-    public static void  validarFechasReserva(LocalDate fechaEntrada, LocalDate fechaSalida, String mensaje){
-        if(! (fechaEntrada.isBefore(fechaSalida))){
+    public static void  validarFechasReserva(LocalDateTime fechaEntrada, LocalDateTime fechaSalida, String mensaje){
+        if(! (fechaEntrada.toLocalDate().isBefore(fechaSalida.toLocalDate()))){
             throw new ExcepcionValorInvalido(mensaje);
         }
     }

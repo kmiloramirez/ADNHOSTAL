@@ -3,6 +3,8 @@ package com.ceiba.reserva.servicio;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
+import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
+import com.ceiba.habitacion.puerto.repositorio.RepositorioHabitacion;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
 import com.ceiba.reserva.modelo.testdatabuilder.ReservaTestDataBuilder;
@@ -17,20 +19,22 @@ class ServicioCrearReservaTest {
 
     private ServicioCrearReserva servicioCrearReserva;
     private RepositorioReserva repositorioReserva;
+    private RepositorioHabitacion repositorioHabitacion;
     private ServicioCalcularPrecioReserva servicioCalcularPrecioReserva;
 
     @BeforeEach
     void setUp() {
         repositorioReserva = Mockito.mock(RepositorioReserva.class);
+        repositorioHabitacion = Mockito.mock(RepositorioHabitacion.class);
         servicioCalcularPrecioReserva = Mockito.mock(ServicioCalcularPrecioReserva.class);
-        servicioCrearReserva = new ServicioCrearReserva(repositorioReserva, servicioCalcularPrecioReserva);
+        servicioCrearReserva = new ServicioCrearReserva(repositorioReserva, repositorioHabitacion, servicioCalcularPrecioReserva);
     }
 
     @Test
     void ejecutar() {
         Reserva reserva = new ReservaTestDataBuilder().build();
         Mockito.doReturn(1L).when(repositorioReserva).crear(reserva);
-        Mockito.doReturn(true).when(repositorioReserva).existeHabitacion(reserva.getNumeroHabitacion());
+        Mockito.doReturn(true).when(repositorioHabitacion).existe(reserva.getNumeroHabitacion());
         Mockito.doReturn(true).when(repositorioReserva).disponibilidadHabitacion(reserva.getNumeroHabitacion(),
                 reserva.getFechaEntrada(), reserva.getFechaSalida());
         Mockito.doReturn(reserva).when(servicioCalcularPrecioReserva).ejecutar(reserva);
@@ -44,7 +48,7 @@ class ServicioCrearReservaTest {
     @Test
     void ejecutarConHabitacionNoExiste() {
         Reserva reserva = new ReservaTestDataBuilder().build();
-        Mockito.doReturn(false).when(repositorioReserva).existeHabitacion(reserva.getNumeroHabitacion());
+        Mockito.doReturn(false).when(repositorioHabitacion).existe(reserva.getNumeroHabitacion());
 
 
         BasePrueba.assertThrows(() -> {
@@ -55,7 +59,7 @@ class ServicioCrearReservaTest {
     @Test
     void ejecutarConHabitacionNoDisponible() {
         Reserva reserva = new ReservaTestDataBuilder().build();
-        Mockito.doReturn(true).when(repositorioReserva).existeHabitacion(reserva.getNumeroHabitacion());
+        Mockito.doReturn(true).when(repositorioHabitacion).existe(reserva.getNumeroHabitacion());
         Mockito.doReturn(false).when(repositorioReserva).disponibilidadHabitacion(reserva.getNumeroHabitacion(),
                 reserva.getFechaEntrada(), reserva.getFechaSalida());
 

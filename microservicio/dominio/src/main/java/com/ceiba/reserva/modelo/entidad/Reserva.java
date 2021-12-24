@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
@@ -21,16 +22,16 @@ public class Reserva {
 
     private int numeroReserva;
     private String nombre;
-    private LocalDate fechaEntrada;
+    private LocalDateTime fechaEntrada;
     private String numeroHabitacion;
-    private LocalDate fechaSalida;
+    private LocalDateTime fechaSalida;
     private LocalDate fechaRegistro;
     @Setter
     private double costoTotal;
     @Setter
     private String estadoReserva;
 
-    public Reserva(String nombre, LocalDate fechaEntrada, String numeroHabitacion, LocalDate fechaSalida, LocalDate fechaRegistro) {
+    public Reserva(String nombre, LocalDateTime fechaEntrada, String numeroHabitacion, LocalDateTime fechaSalida) {
 
         validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
         validarNoVacio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
@@ -38,18 +39,28 @@ public class Reserva {
         validarObligatorio(numeroHabitacion, SE_DEBE_INGRESAR_EL_NUMERO_HABITACION);
         validarNoVacio(numeroHabitacion, SE_DEBE_INGRESAR_EL_NUMERO_HABITACION);
         validarObligatorio(fechaSalida, SE_DEBE_INGRESAR_LA_FECHA_DE_SALIDA);
-        validarObligatorio(fechaRegistro, SE_DEBE_INGRESAR_LA_FECHA_DE_REGISTRO);
         validarFechaEntrada(fechaEntrada, LA_FECHA_DE_ENTRADA_DEBE_SER_MAYOR_O_IGUAL_A_LA_ACTUAL);
         validarFechasReserva(fechaEntrada, fechaSalida, LA_FECHA_DE_SALIDA_DEBE_SER_MAYOR);
-
+        fechaEntrada = setearHoraDeEntradaHanitacion(fechaEntrada);
+        fechaSalida = setearHoraDeSalidaHanitacion(fechaSalida);
 
         this.nombre = nombre;
         this.fechaEntrada = fechaEntrada;
         this.numeroHabitacion = numeroHabitacion;
         this.fechaSalida = fechaSalida;
-        this.fechaRegistro = fechaRegistro;
+        this.fechaRegistro = LocalDate.now();
         this.costoTotal = 0.0;
         this.estadoReserva = "";
+    }
+
+
+
+    private LocalDateTime setearHoraDeEntradaHanitacion(LocalDateTime fechaEntrada) {
+        return fechaEntrada.withHour(15).withMinute(00).withSecond(00).withNano(0);
+
+    }
+    private LocalDateTime setearHoraDeSalidaHanitacion(LocalDateTime fechaSalida) {
+        return fechaSalida.withHour(12).withMinute(00).withSecond(00).withNano(0);
     }
 
 

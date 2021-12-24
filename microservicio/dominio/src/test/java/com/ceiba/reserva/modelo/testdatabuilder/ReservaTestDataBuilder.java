@@ -3,23 +3,22 @@ package com.ceiba.reserva.modelo.testdatabuilder;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ReservaTestDataBuilder {
 
     private String nombre;
-    private LocalDate fechaEntrada;
+    private LocalDateTime fechaEntrada;
     private String numeroHabitacion;
-    private LocalDate fechaSalida;
-    private LocalDate fechaRegistro;
+    private LocalDateTime fechaSalida;
 
 
     public ReservaTestDataBuilder() {
-        LocalDate fechaActual = LocalDate.now();
+        LocalDateTime fechaActual = LocalDateTime.now();
         this.nombre = "prueba";
         this.fechaEntrada = fechaActual.plusDays(1);
         this.numeroHabitacion = "prueba";
         this.fechaSalida = this.fechaEntrada.plusDays(1);
-        this.fechaRegistro = fechaActual;
     }
 
     public ReservaTestDataBuilder conNombre(String nombre) {
@@ -27,7 +26,7 @@ public class ReservaTestDataBuilder {
         return this;
     }
 
-    public ReservaTestDataBuilder conFechaEntrada(LocalDate fechaEntrada) {
+    public ReservaTestDataBuilder conFechaEntrada(LocalDateTime fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
         return this;
     }
@@ -37,19 +36,13 @@ public class ReservaTestDataBuilder {
         return this;
     }
 
-    public ReservaTestDataBuilder conFechaSalida(LocalDate fechaSalida) {
+    public ReservaTestDataBuilder conFechaSalida(LocalDateTime fechaSalida) {
         this.fechaSalida = fechaSalida;
         return this;
     }
 
-    public ReservaTestDataBuilder conFechaRegistro(LocalDate fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-        return this;
-    }
-
-
     public Reserva build() {
-        return new Reserva(nombre, fechaEntrada, numeroHabitacion, fechaSalida, fechaRegistro);
+        return new Reserva(nombre, fechaEntrada, numeroHabitacion, fechaSalida);
     }
 
 

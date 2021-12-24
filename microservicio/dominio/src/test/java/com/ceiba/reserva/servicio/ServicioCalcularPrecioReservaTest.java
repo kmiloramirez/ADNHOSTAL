@@ -1,5 +1,6 @@
 package com.ceiba.reserva.servicio;
 
+import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.reserva.cobro.ReglaCobro;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.modelo.testdatabuilder.ReservaTestDataBuilder;
@@ -19,6 +20,7 @@ class ServicioCalcularPrecioReservaTest {
     private List<ReglaCobro> reglasCobros;
     private ReglaCobro reglaCobro;
     private RepositorioReserva repositorioReserva;
+    private DaoHabitacion daoHabitacion;
 
     @BeforeEach
     void setUp() {
@@ -26,7 +28,8 @@ class ServicioCalcularPrecioReservaTest {
         reglaCobro = Mockito.mock(ReglaCobro.class);
         reglasCobros.add(reglaCobro);
         repositorioReserva = Mockito.mock(RepositorioReserva.class);
-        servicioCalcularPrecioReserva = new ServicioCalcularPrecioReserva(reglasCobros, repositorioReserva);
+        daoHabitacion = Mockito.mock(DaoHabitacion.class);
+        servicioCalcularPrecioReserva = new ServicioCalcularPrecioReserva(reglasCobros, repositorioReserva, daoHabitacion);
     }
 
     @Test
@@ -34,8 +37,8 @@ class ServicioCalcularPrecioReservaTest {
         Reserva reserva = new ReservaTestDataBuilder().build();
         double precioHabitacion = 100.0;
         double precioTotal = 200.0;
-        Mockito.doReturn(precioHabitacion).when(repositorioReserva).precioHabitacion(reserva.getNumeroHabitacion());
-        Mockito.doReturn(precioTotal).when(reglaCobro).cobrar(reserva.getFechaEntrada(), reserva.getFechaSalida(), precioHabitacion);
+        Mockito.doReturn(precioHabitacion).when(daoHabitacion).obtenerPrecioHabitacion(reserva.getNumeroHabitacion());
+        Mockito.doReturn(precioTotal).when(reglaCobro).cobrar(reserva.getFechaEntrada().toLocalDate(), reserva.getFechaSalida().toLocalDate(), precioHabitacion);
 
         Reserva resultado = servicioCalcularPrecioReserva.ejecutar(reserva);
 

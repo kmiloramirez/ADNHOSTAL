@@ -9,7 +9,7 @@ public class FabricaReserva {
 
     public Reserva crear(ComandoReserva comandoReserva) {
         return new Reserva(comandoReserva.getNombre(), comandoReserva.getFechaEntrada(), comandoReserva.getNumeroHabitacion(),
-                comandoReserva.getFechaSalida(), comandoReserva.getFechaRegistro());
+                comandoReserva.getFechaSalida());
     }
 
 }

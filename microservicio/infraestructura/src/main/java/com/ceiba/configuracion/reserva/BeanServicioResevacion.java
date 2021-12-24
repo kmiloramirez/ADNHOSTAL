@@ -1,5 +1,7 @@
 package com.ceiba.configuracion.reserva;
 
+import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
+import com.ceiba.habitacion.puerto.repositorio.RepositorioHabitacion;
 import com.ceiba.reserva.cobro.*;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.ServicioCalcularPrecioReserva;
@@ -14,18 +16,18 @@ import java.util.List;
 public class BeanServicioResevacion {
 
     @Bean
-    public ServicioCalcularPrecioReserva servicioCalcularPrecioReserva(RepositorioReserva repositorioReserva) {
+    public ServicioCalcularPrecioReserva servicioCalcularPrecioReserva(RepositorioReserva repositorioReserva,DaoHabitacion daoHabitacion) {
         List<ReglaCobro> reglaCobros = new ArrayList<>();
         reglaCobros.add(new ReglaCobroLunesAMiercoles());
         reglaCobros.add(new ReglaCobroOrdinaria());
         reglaCobros.add(new ReglaCobroSabadoYDomingo());
         reglaCobros.add(new ReglaCobroDescuentoPorDias());
-        return new ServicioCalcularPrecioReserva(reglaCobros, repositorioReserva);
+        return new ServicioCalcularPrecioReserva(reglaCobros, repositorioReserva, daoHabitacion);
     }
 
     @Bean
-    public ServicioCrearReserva servicioCrearReserva(RepositorioReserva repositorioReserva,
+    public ServicioCrearReserva servicioCrearReserva(RepositorioReserva repositorioReserva, RepositorioHabitacion repositorioHabitacion,
                                                      ServicioCalcularPrecioReserva servicioCalcularPrecioReserva) {
-        return new ServicioCrearReserva(repositorioReserva, servicioCalcularPrecioReserva);
+        return new ServicioCrearReserva(repositorioReserva, repositorioHabitacion, servicioCalcularPrecioReserva);
     }
 }

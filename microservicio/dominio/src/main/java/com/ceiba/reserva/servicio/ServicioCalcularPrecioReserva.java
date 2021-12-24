@@ -1,5 +1,6 @@
 package com.ceiba.reserva.servicio;
 
+import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.reserva.cobro.ReglaCobro;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
@@ -10,16 +11,19 @@ public class ServicioCalcularPrecioReserva {
 
     private final List<ReglaCobro> reglasCobros;
     private final RepositorioReserva repositorioReserva;
+    private final DaoHabitacion daoHabitacion;
 
-    public ServicioCalcularPrecioReserva(List<ReglaCobro> reglasCobros, RepositorioReserva repositorioReserva) {
+    public ServicioCalcularPrecioReserva(List<ReglaCobro> reglasCobros, RepositorioReserva repositorioReserva, DaoHabitacion daoHabitacion) {
         this.reglasCobros = reglasCobros;
         this.repositorioReserva = repositorioReserva;
+        this.daoHabitacion = daoHabitacion;
     }
 
     public Reserva ejecutar(Reserva reserva) {
-        double precioHabitacion = repositorioReserva.precioHabitacion(reserva.getNumeroHabitacion());
+        double precioHabitacion = daoHabitacion.obtenerPrecioHabitacion(reserva.getNumeroHabitacion());
         reglasCobros.forEach(reglaCobro -> {
-            double precioRegla = reglaCobro.cobrar(reserva.getFechaEntrada(), reserva.getFechaSalida(), precioHabitacion);
+            double precioRegla = reglaCobro.cobrar(reserva.getFechaEntrada().toLocalDate(),
+                    reserva.getFechaSalida().toLocalDate(), precioHabitacion);
             reserva.setCostoTotal(reserva.getCostoTotal() + precioRegla);
         });
         return reserva;

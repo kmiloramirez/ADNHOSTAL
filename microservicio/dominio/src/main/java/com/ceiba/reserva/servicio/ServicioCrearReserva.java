@@ -2,11 +2,13 @@ package com.ceiba.reserva.servicio;
 
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
+import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
+import com.ceiba.habitacion.puerto.repositorio.RepositorioHabitacion;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ServicioCrearReserva {
 
@@ -14,10 +16,13 @@ public class ServicioCrearReserva {
     private static final String LA_HABITCION_NO_DISPONIBLE = "La habitacion no esta disponible en esas fechas";
 
     private final RepositorioReserva repositorioReserva;
+    private final RepositorioHabitacion repositorioHabitacion;
     private final ServicioCalcularPrecioReserva servicioCalcularPrecioReserva;
 
-    public ServicioCrearReserva(RepositorioReserva repositorioReserva, ServicioCalcularPrecioReserva servicioCalcularPrecioReserva) {
+    public ServicioCrearReserva(RepositorioReserva repositorioReserva, RepositorioHabitacion repositorioHabitacion,
+                                ServicioCalcularPrecioReserva servicioCalcularPrecioReserva) {
         this.repositorioReserva = repositorioReserva;
+        this.repositorioHabitacion = repositorioHabitacion;
         this.servicioCalcularPrecioReserva = servicioCalcularPrecioReserva;
     }
 
@@ -30,12 +35,12 @@ public class ServicioCrearReserva {
     }
 
     private void validarHabitacionExiste(String numeroHabitacion) {
-        if (!repositorioReserva.existeHabitacion(numeroHabitacion)) {
+        if (!repositorioHabitacion.existe(numeroHabitacion)) {
             throw new ExcepcionSinDatos(LA_HABITCION_NO_EXISTE);
         }
     }
 
-    private void validarDisponibilidad(String numeroHabitacion, LocalDate fechaEntrada, LocalDate fechaSalida) {
+    private void validarDisponibilidad(String numeroHabitacion, LocalDateTime fechaEntrada, LocalDateTime fechaSalida) {
         if (!repositorioReserva.disponibilidadHabitacion(numeroHabitacion, fechaEntrada, fechaSalida)) {
             throw new ExcepcionDuplicidad(LA_HABITCION_NO_DISPONIBLE);
         }
