@@ -1,4 +1,4 @@
-package com.ceiba.reserva;
+package com.ceiba.reserva.comando;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

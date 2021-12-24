@@ -1,9 +1,9 @@
-package com.ceiba.reserva.manejador;
+package com.ceiba.reserva.comando.manejador;
 
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.manejador.ManejadorComandoRespuesta;
-import com.ceiba.reserva.ComandoReserva;
-import com.ceiba.reserva.fabrica.FabricaReserva;
+import com.ceiba.reserva.comando.ComandoReserva;
+import com.ceiba.reserva.comando.fabrica.FabricaReserva;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
 import org.springframework.stereotype.Component;
