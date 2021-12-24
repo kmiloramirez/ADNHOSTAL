@@ -16,7 +16,7 @@ import java.util.List;
 public class BeanServicioResevacion {
 
     @Bean
-    public ServicioCalcularPrecioReserva servicioCalcularPrecioReserva(RepositorioReserva repositorioReserva,DaoHabitacion daoHabitacion) {
+    public ServicioCalcularPrecioReserva servicioCalcularPrecioReserva(RepositorioReserva repositorioReserva, DaoHabitacion daoHabitacion) {
         List<ReglaCobro> reglaCobros = new ArrayList<>();
         reglaCobros.add(new ReglaCobroLunesAMiercoles());
         reglaCobros.add(new ReglaCobroOrdinaria());
