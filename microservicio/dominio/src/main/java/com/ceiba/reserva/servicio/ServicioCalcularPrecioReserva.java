@@ -14,7 +14,7 @@ public class ServicioCalcularPrecioReserva {
 
     public ServicioCalcularPrecioReserva(List<ReglaCobro> reglasCobros, DaoHabitacion daoHabitacion) {
         this.reglasCobros = new ArrayList<>();
-        reglasCobros.addAll(reglasCobros);
+        this.reglasCobros.addAll(reglasCobros);
         this.daoHabitacion = daoHabitacion;
     }
 

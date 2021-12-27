@@ -39,6 +39,6 @@ class ServicioCalcularPrecioReservaTest {
 
         Reserva resultado = servicioCalcularPrecioReserva.ejecutar(reserva);
 
-        assertEquals(precioTotal, reserva.getCostoTotal());
+        assertEquals(precioTotal, resultado.getCostoTotal());
     }
 }
