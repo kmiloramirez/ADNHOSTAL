@@ -42,4 +42,12 @@ public interface RepositorioReserva {
      */
     boolean existeReserva(int numeroReserva);
 
+    /**
+     * Permite eliminar una reserva
+     *
+     * @param numeroReserva
+     *
+     */
+    void eliminar(int numeroReserva);
+
 }

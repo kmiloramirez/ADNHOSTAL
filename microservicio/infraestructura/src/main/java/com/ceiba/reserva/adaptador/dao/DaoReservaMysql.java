@@ -23,6 +23,8 @@ public class DaoReservaMysql implements DaoReserva {
     private static String sqlListar;
     @SqlStatement(namespace = "reserva", value = "reservaEstado")
     private static String sqlReservaEstado;
+    @SqlStatement(namespace = "reserva", value = "obtenerEstadoReserva")
+    private static String sqlObtenerEstadoReserva;
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
@@ -52,5 +54,13 @@ public class DaoReservaMysql implements DaoReserva {
         paramSource.addValue("estadoReserva", estado);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .query(sqlReservaEstado, paramSource, new MapeoReserva());
+    }
+
+    @Override
+    public String obtenerEstadoReservaReserva(int numeroReserva) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("numeroReserva", numeroReserva);
+        return customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+                .queryForObject(sqlObtenerEstadoReserva, paramSource, String.class);
     }
 }

@@ -27,6 +27,9 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     @SqlStatement(namespace = "reserva", value = "existeReserva")
     private static String sqlExisteReserva;
 
+    @SqlStatement(namespace = "reserva", value = "eliminar")
+    private static String sqlEliminar;
+
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -61,6 +64,14 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .queryForObject(sqlExisteReserva, paramSource, Boolean.class);
+    }
+
+    @Override
+    public void eliminar(int numeroReserva) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("numeroReserva", numeroReserva);
+
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
     }
 
 

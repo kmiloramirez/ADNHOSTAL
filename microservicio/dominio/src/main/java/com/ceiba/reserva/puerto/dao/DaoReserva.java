@@ -23,4 +23,11 @@ public interface DaoReserva {
      * @return reserva
      */
     List<DtoReserva> consultarReservaEstado(String estado);
+    /**
+     *Permite obtener las reservas
+     *
+     * @param numeroReserva
+     * @return estado reserva
+     */
+    String  obtenerEstadoReservaReserva(int numeroReserva);
 }

@@ -3,10 +3,12 @@ package com.ceiba.configuracion.reserva;
 import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.habitacion.puerto.repositorio.RepositorioHabitacion;
 import com.ceiba.reserva.cobro.*;
+import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.ServicioActualizarReserva;
 import com.ceiba.reserva.servicio.ServicioCalcularPrecioReserva;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
+import com.ceiba.reserva.servicio.ServicioEliminarReserva;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -35,5 +37,11 @@ public class BeanServicioResevacion {
     @Bean
     public ServicioActualizarReserva servicioActualizarReserva(RepositorioReserva repositorioReserva){
         return new ServicioActualizarReserva(repositorioReserva);
+    }
+
+    @Bean
+    public ServicioEliminarReserva servicioEliminarReserva(RepositorioReserva repositorioReserva,
+                                                           DaoReserva daoReserva){
+        return new ServicioEliminarReserva(repositorioReserva, daoReserva);
     }
 }
