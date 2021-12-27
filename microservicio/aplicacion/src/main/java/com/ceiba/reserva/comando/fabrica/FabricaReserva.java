@@ -12,4 +12,9 @@ public class FabricaReserva {
                 comandoReserva.getFechaSalida());
     }
 
+    public Reserva crearActualizar(ComandoReserva comandoReserva) {
+        return new Reserva(comandoReserva.getNumeroReserva(),comandoReserva.getNombre(),
+                comandoReserva.getEstadoReserva());
+    }
+
 }

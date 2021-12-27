@@ -30,6 +30,16 @@ class ReservaTest {
     }
 
     @Test
+    void crearReservaActualizarSinError() {
+
+        Reserva reserva = new ReservaTestDataBuilder().buildActualizar();
+
+        assertEquals(1, reserva.getNumeroReserva());
+        assertEquals("prueba", reserva.getNombre());
+        assertEquals("reservado", reserva.getEstadoReserva());
+    }
+
+    @Test
     void crearReservaConErrorNombre() {
         ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conNombre(null);
 
@@ -113,6 +123,42 @@ class ReservaTest {
         BasePrueba.assertThrows(() -> {
             reservaTestDataBuilder.build();
         }, ExcepcionValorInvalido.class, "La fecha de salida debe ser mayor a la fecha de entrada");
+    }
+
+    @Test
+    void crearReservaConNumeroReservaNegativo() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conNumeroReserva(-1);
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildActualizar();
+        }, ExcepcionValorInvalido.class, "El numero de reerva debe ser positivo");
+    }
+
+    @Test
+    void crearReservaConEstadoVacio() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conEstado("");
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildActualizar();
+        }, ExcepcionValorObligatorio.class, "Se debe ingresar un estado");
+    }
+
+    @Test
+    void crearReservaConEstadoNulo() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conEstado(null);
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildActualizar();
+        }, ExcepcionValorObligatorio.class, "Se debe ingresar un estado");
+    }
+
+    @Test
+    void crearReservaConEstadoNoValido() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conEstado("prueba");
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildActualizar();
+        }, ExcepcionValorInvalido.class, "Se debe ingresar un estado valido");
     }
 
 }

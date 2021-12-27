@@ -1,5 +1,6 @@
 package com.ceiba.reserva.modelo.entidad;
 
+import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,6 +20,9 @@ public class Reserva {
     private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_REGISTRO = "Se debe ingresar la fecha de registro";
     private static final String LA_FECHA_DE_ENTRADA_DEBE_SER_MAYOR_O_IGUAL_A_LA_ACTUAL = "La fecha de entrada debe ser mayor o igual a la actual";
     private static final String LA_FECHA_DE_SALIDA_DEBE_SER_MAYOR = "La fecha de salida debe ser mayor a la fecha de entrada";
+    private static final String El_NUMERO_RESERVA_DEBE_SER_POSITIVO = "El numero de reerva debe ser positivo";
+    private static final String SE_DEBE_INGRESAR_EL_ESTADO = "Se debe ingresar un estado";
+    private static final String SE_DEBE_INGRESAR_EL_ESTADO_VALIDO = "Se debe ingresar un estado valido";
 
     private int numeroReserva;
     private String nombre;
@@ -53,7 +57,20 @@ public class Reserva {
         this.estadoReserva = "";
     }
 
+    public Reserva(int numeroReserva, String nombre,String estadoReserva) {
 
+        validarPositivo(numeroReserva,El_NUMERO_RESERVA_DEBE_SER_POSITIVO);
+        validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
+        validarNoVacio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
+        validarObligatorio(estadoReserva, SE_DEBE_INGRESAR_EL_ESTADO);
+        validarNoVacio(estadoReserva, SE_DEBE_INGRESAR_EL_ESTADO);
+        validarContenidoLista(estadoReserva,EstadoReserva.getEstados(),SE_DEBE_INGRESAR_EL_ESTADO_VALIDO);
+
+
+        this.numeroReserva = numeroReserva;
+        this.nombre = nombre;
+        this.estadoReserva = estadoReserva;
+    }
 
     private LocalDateTime setearHoraDeEntradaHanitacion(LocalDateTime fechaEntrada) {
         return fechaEntrada.withHour(15).withMinute(00).withSecond(00).withNano(0);
@@ -62,25 +79,4 @@ public class Reserva {
     private LocalDateTime setearHoraDeSalidaHanitacion(LocalDateTime fechaSalida) {
         return fechaSalida.withHour(12).withMinute(00).withSecond(00).withNano(0);
     }
-
-
-/*
-    public Reserva(int numeroReserva, String nombre, LocalDate fechaEntrada, String numeroHabitacion, LocalDate fechaSalida, LocalDate fechaRegistro, double costoTotal) {
-
-        validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
-        validarObligatorio(fechaEntrada,SE_DEBE_INGRESAR_LA_FECHA_DE_ENTRADA);
-        validarObligatorio(numeroHabitacion,SE_DEBE_INGRESAR_EL_NUMERO_HABITACION);
-        validarObligatorio(fechaSalida,SE_DEBE_INGRESAR_LA_FECHA_DE_SALIDA);
-        validarObligatorio(fechaRegistro,SE_DEBE_INGRESAR_LA_FECHA_DE_REGISTRO);
-        validarFechaEntrada(fechaEntrada,LA_FECHA_DE_ENTRADA_DEBE_SER_MAYOR_O_IGUAL_A_LA_ACTUAL);
-        validarMenor(fechaEntrada,fechaSalida,LA_FECHA_DE_SALIDA_DEBE_SER_MAYOR);
-
-        this.numeroReserva = numeroReserva;
-        this.nombre = nombre;
-        this.fechaEntrada = fechaEntrada;
-        this.numeroHabitacion = numeroHabitacion;
-        this.fechaSalida = fechaSalida;
-        this.fechaRegistro = fechaRegistro;
-        this.costoTotal = costoTotal;
-    }*/
 }

@@ -46,6 +46,12 @@ public class ValidadorArgumento {
         }
     }
 
+    public static void validarPositivo(int valor, String mensaje) {
+        if (valor <= 0) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
     public static void validarIgual(Double valor, Double valorEsperado, String mensaje) {
         if (!valor.equals(valorEsperado)) {
             throw new ExcepcionValorInvalido(mensaje);
@@ -117,6 +123,12 @@ public class ValidadorArgumento {
 
     public static void  validarFechasReserva(LocalDateTime fechaEntrada, LocalDateTime fechaSalida, String mensaje){
         if(! (fechaEntrada.toLocalDate().isBefore(fechaSalida.toLocalDate()))){
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
+    public static <T> void  validarContenidoLista(T valor , List<T> lista , String mensaje){
+        if(!lista.contains(valor)){
             throw new ExcepcionValorInvalido(mensaje);
         }
     }

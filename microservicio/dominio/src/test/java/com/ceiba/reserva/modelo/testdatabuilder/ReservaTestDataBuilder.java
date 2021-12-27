@@ -6,18 +6,22 @@ import java.time.LocalDateTime;
 
 public class ReservaTestDataBuilder {
 
+    private int numeroReserva;
     private String nombre;
     private LocalDateTime fechaEntrada;
     private String numeroHabitacion;
     private LocalDateTime fechaSalida;
+    private String estadoReserva;
 
 
     public ReservaTestDataBuilder() {
+        this.numeroReserva = 1;
         LocalDateTime fechaActual = LocalDateTime.now();
         this.nombre = "prueba";
         this.fechaEntrada = fechaActual.plusDays(1);
         this.numeroHabitacion = "prueba";
         this.fechaSalida = this.fechaEntrada.plusDays(1);
+        this.estadoReserva = "reservado";
     }
 
     public ReservaTestDataBuilder conNombre(String nombre) {
@@ -40,8 +44,22 @@ public class ReservaTestDataBuilder {
         return this;
     }
 
+    public ReservaTestDataBuilder conNumeroReserva(int numeroReserva) {
+        this.numeroReserva = numeroReserva;
+        return this;
+    }
+
+    public ReservaTestDataBuilder conEstado(String estadoReserva) {
+        this.estadoReserva = estadoReserva;
+        return this;
+    }
+
     public Reserva build() {
         return new Reserva(nombre, fechaEntrada, numeroHabitacion, fechaSalida);
+    }
+
+    public Reserva buildActualizar() {
+        return new Reserva(numeroReserva,nombre,estadoReserva);
     }
 
 

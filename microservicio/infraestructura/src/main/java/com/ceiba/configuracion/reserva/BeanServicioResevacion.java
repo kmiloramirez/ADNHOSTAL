@@ -4,6 +4,7 @@ import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.habitacion.puerto.repositorio.RepositorioHabitacion;
 import com.ceiba.reserva.cobro.*;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
+import com.ceiba.reserva.servicio.ServicioActualizarReserva;
 import com.ceiba.reserva.servicio.ServicioCalcularPrecioReserva;
 import com.ceiba.reserva.servicio.ServicioCrearReserva;
 import org.springframework.context.annotation.Bean;
@@ -29,5 +30,10 @@ public class BeanServicioResevacion {
     public ServicioCrearReserva servicioCrearReserva(RepositorioReserva repositorioReserva, RepositorioHabitacion repositorioHabitacion,
                                                      ServicioCalcularPrecioReserva servicioCalcularPrecioReserva) {
         return new ServicioCrearReserva(repositorioReserva, repositorioHabitacion, servicioCalcularPrecioReserva);
+    }
+
+    @Bean
+    public ServicioActualizarReserva servicioActualizarReserva(RepositorioReserva repositorioReserva){
+        return new ServicioActualizarReserva(repositorioReserva);
     }
 }

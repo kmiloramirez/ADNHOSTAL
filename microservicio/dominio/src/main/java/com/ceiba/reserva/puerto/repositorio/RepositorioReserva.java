@@ -27,4 +27,19 @@ public interface RepositorioReserva {
      */
     boolean disponibilidadHabitacion(String numeroHabitacion, LocalDateTime fechaEntrada, LocalDateTime fechaSalida);
 
+    /**
+     * Permite actualizar una reserva
+     *
+     * @param reserva
+     */
+    void actualizar(Reserva reserva);
+
+    /**
+     * Permite validar si existe una reserva
+     *
+     * @param numeroReserva
+     * @return el id generado
+     */
+    boolean existeReserva(int numeroReserva);
+
 }
