@@ -20,7 +20,7 @@ public class Reserva {
     private static final String SE_DEBE_INGRESAR_LA_FECHA_DE_REGISTRO = "Se debe ingresar la fecha de registro";
     private static final String LA_FECHA_DE_ENTRADA_DEBE_SER_MAYOR_O_IGUAL_A_LA_ACTUAL = "La fecha de entrada debe ser mayor o igual a la actual";
     private static final String LA_FECHA_DE_SALIDA_DEBE_SER_MAYOR = "La fecha de salida debe ser mayor a la fecha de entrada";
-    private static final String El_NUMERO_RESERVA_DEBE_SER_POSITIVO = "El numero de reerva debe ser positivo";
+    private static final String EL_NUMERO_RESERVA_DEBE_SER_POSITIVO = "El numero de reerva debe ser positivo";
     private static final String SE_DEBE_INGRESAR_EL_ESTADO = "Se debe ingresar un estado";
     private static final String SE_DEBE_INGRESAR_EL_ESTADO_VALIDO = "Se debe ingresar un estado valido";
 
@@ -59,7 +59,7 @@ public class Reserva {
 
     public Reserva(int numeroReserva, String nombre,String estadoReserva) {
 
-        validarPositivo(numeroReserva,El_NUMERO_RESERVA_DEBE_SER_POSITIVO);
+        validarPositivo(numeroReserva,EL_NUMERO_RESERVA_DEBE_SER_POSITIVO);
         validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
         validarNoVacio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
         validarObligatorio(estadoReserva, SE_DEBE_INGRESAR_EL_ESTADO);
@@ -73,10 +73,10 @@ public class Reserva {
     }
 
     private LocalDateTime setearHoraDeEntradaHanitacion(LocalDateTime fechaEntrada) {
-        return fechaEntrada.withHour(15).withMinute(00).withSecond(00).withNano(0);
+        return fechaEntrada.withHour(15).withMinute(0).withSecond(0).withNano(0);
 
     }
     private LocalDateTime setearHoraDeSalidaHanitacion(LocalDateTime fechaSalida) {
-        return fechaSalida.withHour(12).withMinute(00).withSecond(00).withNano(0);
+        return fechaSalida.withHour(12).withMinute(0).withSecond(0).withNano(0);
     }
 }

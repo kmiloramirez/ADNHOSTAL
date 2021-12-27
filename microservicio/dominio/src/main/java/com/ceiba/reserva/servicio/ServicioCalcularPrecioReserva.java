@@ -4,6 +4,7 @@ import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.reserva.cobro.ReglaCobro;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServicioCalcularPrecioReserva {
@@ -12,7 +13,8 @@ public class ServicioCalcularPrecioReserva {
     private final DaoHabitacion daoHabitacion;
 
     public ServicioCalcularPrecioReserva(List<ReglaCobro> reglasCobros, DaoHabitacion daoHabitacion) {
-        this.reglasCobros = reglasCobros;
+        this.reglasCobros = new ArrayList<>();
+        reglasCobros.addAll(reglasCobros);
         this.daoHabitacion = daoHabitacion;
     }
 
