@@ -55,6 +55,7 @@ public class TCRMServicesWebServiceLocator extends Service implements TCRMServic
      * For the given interface, get the stub implementation. If this service has
      * no port for the given interface, then ServiceException is thrown.
      */
+    @Override
     public Remote getPort(Class serviceEndpointInterface) throws ServiceException {
         try {
             if (TCRMServicesInterface.class.isAssignableFrom(serviceEndpointInterface)) {
@@ -72,6 +73,7 @@ public class TCRMServicesWebServiceLocator extends Service implements TCRMServic
      * For the given interface, get the stub implementation. If this service has
      * no port for the given interface, then ServiceException is thrown.
      */
+    @Override
     public Remote getPort(QName portName, Class serviceEndpointInterface) throws ServiceException {
         if (portName == null) {
             return getPort(serviceEndpointInterface);
@@ -87,11 +89,11 @@ public class TCRMServicesWebServiceLocator extends Service implements TCRMServic
             return stub;
         }
     }
-
+    @Override
     public QName getServiceName() {
         return new QName(NAMESPACE_URI, "TCRMServicesWebService");
     }
-
+    @Override
     public Iterator<QName> getPorts() {
         if (ports == null) {
             ports = new HashSet<>();

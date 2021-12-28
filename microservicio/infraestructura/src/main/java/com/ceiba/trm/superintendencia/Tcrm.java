@@ -24,53 +24,22 @@ public class Tcrm implements Serializable {
 
     static {
         typeDesc.setXmlType(new QName("http://action.trm.services.generic.action.superfinanciera.nexura.sc.com.co/", "tcrm"));
+        typeDesc.addFieldDesc(obtenerElemntDesc("displayToUser","displayToUser","boolean"));
+        typeDesc.addFieldDesc(obtenerElemntDesc("id","id","long"));
+        typeDesc.addFieldDesc(obtenerElemntDesc("unit","unit","string"));
+        typeDesc.addFieldDesc(obtenerElemntDesc("validityFrom","validityFrom","dateTime"));
+        typeDesc.addFieldDesc(obtenerElemntDesc("validityTo","validityTo","dateTime"));
+        typeDesc.addFieldDesc(obtenerElemntDesc("value","value","float"));
+    }
+
+    private static ElementDesc obtenerElemntDesc(String fieldName,String localPartXmlName, String localPartXmlType){
         ElementDesc elemField = new ElementDesc();
-        elemField.setFieldName("displayToUser");
-        elemField.setXmlName(new QName("", "displayToUser"));
-        elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, "boolean"));
+        elemField.setFieldName(fieldName);
+        elemField.setXmlName(new QName("", localPartXmlName));
+        elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, localPartXmlType));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-
-        elemField = new ElementDesc();
-        elemField.setFieldName("id");
-        elemField.setXmlName(new QName("", "id"));
-        elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, "long"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-
-        elemField = new ElementDesc();
-        elemField.setFieldName("unit");
-        elemField.setXmlName(new QName("", "unit"));
-        elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, "string"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-
-        elemField = new ElementDesc();
-        elemField.setFieldName("validityFrom");
-        elemField.setXmlName(new QName("", "validityFrom"));
-        elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, "dateTime"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-
-        elemField = new ElementDesc();
-        elemField.setFieldName("validityTo");
-        elemField.setXmlName(new QName("", "validityTo"));
-        elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, "dateTime"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-
-        elemField = new ElementDesc();
-        elemField.setFieldName("value");
-        elemField.setXmlName(new QName("", "value"));
-        elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, "float"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
+        return elemField;
     }
 
     private Boolean displayToUser;
