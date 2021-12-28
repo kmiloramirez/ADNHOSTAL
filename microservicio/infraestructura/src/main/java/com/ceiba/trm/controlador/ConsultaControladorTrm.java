@@ -12,11 +12,11 @@ import java.time.LocalDate;
 @RestController
 @RequestMapping("/trm")
 @Api(tags = {"Consulta comando trm"})
-public class ConsulraControladorTrm {
+public class ConsultaControladorTrm {
 
     private final ManejadorConsultaTrm manejadorConsultaTrm;
 
-    public ConsulraControladorTrm(ManejadorConsultaTrm manejadorConsultaTrm) {
+    public ConsultaControladorTrm(ManejadorConsultaTrm manejadorConsultaTrm) {
         this.manejadorConsultaTrm = manejadorConsultaTrm;
     }
 
