@@ -6,7 +6,6 @@ import com.ceiba.reserva.cobro.*;
 import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.*;
-import com.ceiba.trm.puerto.repositorio.RepositorioTrm;
 import com.ceiba.trm.servicio.ServicioConsultarTrm;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,11 +41,6 @@ public class BeanServicioResevacion {
     public ServicioEliminarReserva servicioEliminarReserva(RepositorioReserva repositorioReserva,
                                                            DaoReserva daoReserva) {
         return new ServicioEliminarReserva(repositorioReserva, daoReserva);
-    }
-
-    @Bean
-    public ServicioConsultarTrm servicioConsultarTrm(RepositorioTrm repositorioTrm) {
-        return new ServicioConsultarTrm(repositorioTrm);
     }
 
     @Bean
