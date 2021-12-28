@@ -42,7 +42,7 @@ public class ServicioCobrarReserva {
         try {
             valorTrm = obtenerValorTrm(reservaConsultada.getFechaSalida());
         } catch (ExcepcionTrm excepcionTrm) {
-            LOGGER.error(excepcionTrm.getMessage());
+            LOGGER.info(excepcionTrm.getMessage());
             erroresProcesamiento = excepcionTrm.getMessage();
         }
         double valorDolares = darFormatoDosDecimales((reservaConsultada.getCostoTotal() / valorTrm));
