@@ -59,7 +59,7 @@ public class ReservaTestDataBuilder {
     }
 
     public Reserva buildActualizar() {
-        return new Reserva(numeroReserva,nombre,estadoReserva);
+        return new Reserva(numeroReserva, nombre, estadoReserva);
     }
 
     public Reserva buildConCostoTotal(double costoTotal) {

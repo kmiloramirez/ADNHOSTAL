@@ -9,8 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ServicioActualizarReservaTest {
 
     private ServicioActualizarReserva servicioActualizarReserva;
@@ -38,7 +36,7 @@ class ServicioActualizarReservaTest {
         Reserva reserva = new ReservaTestDataBuilder().build();
         Mockito.doReturn(false).when(repositorioReserva).existeReserva(reserva.getNumeroReserva());
 
-        BasePrueba.assertThrows(()->servicioActualizarReserva.ejecutar(reserva),
-                ExcepcionSinDatos.class,"La reservar no existe");
+        BasePrueba.assertThrows(() -> servicioActualizarReserva.ejecutar(reserva),
+                ExcepcionSinDatos.class, "La reservar no existe");
     }
 }

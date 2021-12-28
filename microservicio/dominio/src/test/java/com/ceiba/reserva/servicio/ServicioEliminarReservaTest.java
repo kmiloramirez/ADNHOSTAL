@@ -9,8 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class ServicioEliminarReservaTest {
 
     private ServicioEliminarReserva servicioEliminarReserva;
@@ -21,7 +19,7 @@ class ServicioEliminarReservaTest {
     void setUp() {
         repositorioReserva = Mockito.mock(RepositorioReserva.class);
         daoReserva = Mockito.mock(DaoReserva.class);
-        servicioEliminarReserva = new ServicioEliminarReserva(repositorioReserva,daoReserva);
+        servicioEliminarReserva = new ServicioEliminarReserva(repositorioReserva, daoReserva);
 
     }
 
@@ -40,7 +38,7 @@ class ServicioEliminarReservaTest {
         int numeroReserva = 1;
         Mockito.doReturn(EstadoReserva.ACTIVA.getEstado()).when(daoReserva).obtenerEstadoReservaReserva(numeroReserva);
 
-        BasePrueba.assertThrows(()->servicioEliminarReserva.ejecutar(numeroReserva),
-                ExcepcionEstado.class,"La reserva no se puede borrar por que su estado es: "+EstadoReserva.ACTIVA.getEstado());
+        BasePrueba.assertThrows(() -> servicioEliminarReserva.ejecutar(numeroReserva),
+                ExcepcionEstado.class, "La reserva no se puede borrar por que su estado es: " + EstadoReserva.ACTIVA.getEstado());
     }
 }

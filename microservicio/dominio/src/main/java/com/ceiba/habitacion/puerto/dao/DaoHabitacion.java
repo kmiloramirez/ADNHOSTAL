@@ -8,9 +8,11 @@ public interface DaoHabitacion {
 
     /**
      * Permite obtener las habitaciones
+     *
      * @return habitaciones
      */
     List<DtoHabitacion> listar();
+
     /**
      * Permite obtener el precio de una habitacion
      *

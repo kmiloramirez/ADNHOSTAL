@@ -17,15 +17,15 @@ public class ServicioEliminarReserva {
         this.daoReserva = daoReserva;
     }
 
-    public void ejecutar(int numeroReserva){
+    public void ejecutar(int numeroReserva) {
         validarEstadoReserva(numeroReserva);
         repositorioReserva.eliminar(numeroReserva);
     }
 
     private void validarEstadoReserva(int numeroReserva) {
         String estadoConsultado = daoReserva.obtenerEstadoReservaReserva(numeroReserva);
-        if(!EstadoReserva.RESEVADO.getEstado().equals(estadoConsultado)){
-            throw new ExcepcionEstado(String.format(RESERVA_NO_SE_PUEDE_BORRAR,estadoConsultado));
+        if (!EstadoReserva.RESEVADO.getEstado().equals(estadoConsultado)) {
+            throw new ExcepcionEstado(String.format(RESERVA_NO_SE_PUEDE_BORRAR, estadoConsultado));
         }
     }
 }

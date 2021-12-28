@@ -31,23 +31,23 @@ public class ServicioCobrarReserva {
         this.servicioConsultarTrm = servicioConsultarTrm;
     }
 
-    public DtoReservaCobro ejecutar(int numeroReserva){
+    public DtoReservaCobro ejecutar(int numeroReserva) {
         validarExisteReserva(numeroReserva);
         DtoReserva reservaConsultada = daoReserva.obtenerReserva(numeroReserva);
-        Reserva reserva = new Reserva(reservaConsultada.getNumeroReserva(),reservaConsultada.getNombre(),
+        Reserva reserva = new Reserva(reservaConsultada.getNumeroReserva(), reservaConsultada.getNombre(),
                 EstadoReserva.TERMINADA.getEstado());
         repositorioReserva.actualizar(reserva);
         double valorTrm = 1;
         String erroresProcesamiento = null;
-        try{
-            valorTrm =obtenerValorTrm(reservaConsultada.getFechaSalida());
-        }catch (ExcepcionTrm excepcionTrm){
+        try {
+            valorTrm = obtenerValorTrm(reservaConsultada.getFechaSalida());
+        } catch (ExcepcionTrm excepcionTrm) {
             LOGGER.error(excepcionTrm.getMessage());
             erroresProcesamiento = excepcionTrm.getMessage();
         }
-        double valorDolares = darFormatoDosDecimales((reservaConsultada.getCostoTotal()/valorTrm));
-        return  new DtoReservaCobro(numeroReserva,reservaConsultada.getNumeroHabitacion(),reservaConsultada.getFechaSalida(),
-                reservaConsultada.getCostoTotal(),valorDolares,valorTrm,erroresProcesamiento);
+        double valorDolares = darFormatoDosDecimales((reservaConsultada.getCostoTotal() / valorTrm));
+        return new DtoReservaCobro(numeroReserva, reservaConsultada.getNumeroHabitacion(), reservaConsultada.getFechaSalida(),
+                reservaConsultada.getCostoTotal(), valorDolares, valorTrm, erroresProcesamiento);
     }
 
     private double obtenerValorTrm(LocalDateTime fechaSalida) {

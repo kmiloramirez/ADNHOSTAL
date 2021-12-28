@@ -46,7 +46,6 @@ public interface RepositorioReserva {
      * Permite eliminar una reserva
      *
      * @param numeroReserva
-     *
      */
     void eliminar(int numeroReserva);
 

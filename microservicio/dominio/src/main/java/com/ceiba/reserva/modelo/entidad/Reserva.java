@@ -58,14 +58,14 @@ public class Reserva {
         this.estadoReserva = EstadoReserva.RESEVADO.getEstado();
     }
 
-    public Reserva(int numeroReserva, String nombre,String estadoReserva) {
+    public Reserva(int numeroReserva, String nombre, String estadoReserva) {
 
-        validarPositivo(numeroReserva,EL_NUMERO_RESERVA_DEBE_SER_POSITIVO);
+        validarPositivo(numeroReserva, EL_NUMERO_RESERVA_DEBE_SER_POSITIVO);
         validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
         validarNoVacio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
         validarObligatorio(estadoReserva, SE_DEBE_INGRESAR_EL_ESTADO);
         validarNoVacio(estadoReserva, SE_DEBE_INGRESAR_EL_ESTADO);
-        validarContenidoLista(estadoReserva,EstadoReserva.getEstados(),SE_DEBE_INGRESAR_EL_ESTADO_VALIDO);
+        validarContenidoLista(estadoReserva, EstadoReserva.getEstados(), SE_DEBE_INGRESAR_EL_ESTADO_VALIDO);
 
 
         this.numeroReserva = numeroReserva;
@@ -77,6 +77,7 @@ public class Reserva {
         return fechaEntrada.withHour(15).withMinute(0).withSecond(0).withNano(0);
 
     }
+
     private LocalDateTime setearHoraDeSalidaHanitacion(LocalDateTime fechaSalida) {
         return fechaSalida.withHour(12).withMinute(0).withSecond(0).withNano(0);
     }

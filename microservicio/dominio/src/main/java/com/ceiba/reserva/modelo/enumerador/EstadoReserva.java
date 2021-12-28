@@ -13,15 +13,15 @@ public enum EstadoReserva {
         this.estado = estado;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
     public static List<String> getEstados() {
         List<String> estados = new ArrayList<>();
         estados.add(RESEVADO.getEstado());
         estados.add(ACTIVA.getEstado());
         estados.add(TERMINADA.getEstado());
         return estados;
+    }
+
+    public String getEstado() {
+        return estado;
     }
 }

@@ -7,7 +7,7 @@ import org.mockito.Mockito;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ServicioConsultarTrmTest {
 
@@ -29,6 +29,6 @@ class ServicioConsultarTrmTest {
 
         double resultado = servicioConsultarTrm.ejecutar(fechaConsultar);
 
-        assertEquals(valorTrmEsperado,resultado);
+        assertEquals(valorTrmEsperado, resultado);
     }
 }
