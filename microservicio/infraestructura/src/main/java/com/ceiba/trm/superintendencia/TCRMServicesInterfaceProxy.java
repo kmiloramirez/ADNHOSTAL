@@ -26,10 +26,14 @@ public class TCRMServicesInterfaceProxy implements TCRMServicesInterface {
         }
     }
 
-    public TcrmResponse queryTCRM(Calendar trmQueryAssociatedDate) throws RemoteException, ServiceException {
-        if (this.tCRMServicesInterface == null)
-            initTCRMServicesInterfaceProxy();
-        return this.tCRMServicesInterface.queryTCRM(trmQueryAssociatedDate);
+    public TcrmResponse queryTCRM(Calendar trmQueryAssociatedDate) throws RemoteException {
+        try {
+            if (this.tCRMServicesInterface == null)
+                initTCRMServicesInterfaceProxy();
+            return this.tCRMServicesInterface.queryTCRM(trmQueryAssociatedDate);
+        }catch (RemoteException | ServiceException e){
+            throw  new RemoteException(e.getMessage());
+        }
     }
 
 }

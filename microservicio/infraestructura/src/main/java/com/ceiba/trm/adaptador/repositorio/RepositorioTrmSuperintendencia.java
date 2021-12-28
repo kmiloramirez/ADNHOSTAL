@@ -32,7 +32,7 @@ public class RepositorioTrmSuperintendencia implements RepositorioTrm {
             TCRMServicesInterfaceProxy tcrmServicesInterfaceProxy = new TCRMServicesInterfaceProxy(endPoint);
             TcrmResponse tcrmResponse = tcrmServicesInterfaceProxy.queryTCRM(fechaCalendar);
             return tcrmResponse.getValue();
-        } catch (ServiceException | RemoteException e) {
+        } catch (RemoteException | ServiceException e) {
             LOGGER.error(e.getMessage());
             throw new ExcepcionTrm(ERROR_CONSULTANDO_TRM, e);
         }
