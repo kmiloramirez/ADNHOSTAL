@@ -7,3 +7,6 @@ spring:
       hikari:
          poolName: pool
 
+superintendencia:
+   soap:
+      end-point: https://www.superfinanciera.gov.co/SuperfinancieraWebServiceTRM/TCRMServicesWebService/TCRMServicesWebService?WSDL
