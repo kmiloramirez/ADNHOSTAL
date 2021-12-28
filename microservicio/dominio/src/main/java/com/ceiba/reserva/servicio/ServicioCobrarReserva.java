@@ -9,6 +9,8 @@ import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
 import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.trm.servicio.ServicioConsultarTrm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 
@@ -16,6 +18,7 @@ import static com.ceiba.dominio.formato.FormatoDouble.darFormatoDosDecimales;
 
 public class ServicioCobrarReserva {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServicioCobrarReserva.class);
     private static final String LA_RESERVA_NO_EXISTE = "La reservar no existe";
 
     private final RepositorioReserva repositorioReserva;
@@ -39,6 +42,7 @@ public class ServicioCobrarReserva {
         try{
             valorTrm =obtenerValorTrm(reservaConsultada.getFechaSalida());
         }catch (ExcepcionTrm excepcionTrm){
+            LOGGER.error(excepcionTrm.getMessage());
             erroresProcesamiento = excepcionTrm.getMessage();
         }
         double valorDolares = darFormatoDosDecimales((reservaConsultada.getCostoTotal()/valorTrm));

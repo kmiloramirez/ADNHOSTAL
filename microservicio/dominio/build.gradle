@@ -32,6 +32,7 @@ dependencies {
 
 	implementation project(':comun:comun-dominio')
 	implementation project(':comun:comun-infraestructura')
+	implementation project.ext.springbootweb
 
 	compileOnly project.ext.lombok
 	annotationProcessor project.ext.lombok
