@@ -13,7 +13,7 @@ public class FabricaReserva {
     }
 
     public Reserva crearActualizar(ComandoReserva comandoReserva) {
-        return new Reserva(comandoReserva.getNumeroReserva(),comandoReserva.getNombre(),
+        return new Reserva(comandoReserva.getNumeroReserva(), comandoReserva.getNombre(),
                 comandoReserva.getEstadoReserva());
     }
 

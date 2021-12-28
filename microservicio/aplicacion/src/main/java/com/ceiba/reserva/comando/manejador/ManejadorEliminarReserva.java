@@ -5,7 +5,7 @@ import com.ceiba.reserva.servicio.ServicioEliminarReserva;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ManejadorEliminarReserva  implements ManejadorComando<Integer> {
+public class ManejadorEliminarReserva implements ManejadorComando<Integer> {
 
     private final ServicioEliminarReserva servicioEliminarReserva;
 

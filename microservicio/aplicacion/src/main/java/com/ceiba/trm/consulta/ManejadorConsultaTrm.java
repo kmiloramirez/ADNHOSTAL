@@ -14,7 +14,7 @@ public class ManejadorConsultaTrm {
         this.servicioConsultarTrm = servicioConsultarTrm;
     }
 
-    public double ejecutar(LocalDate fechaConsulta){
+    public double ejecutar(LocalDate fechaConsulta) {
         return servicioConsultarTrm.ejecutar(fechaConsulta);
     }
 }

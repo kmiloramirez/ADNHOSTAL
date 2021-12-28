@@ -16,19 +16,19 @@ public class ManejadorConsultaReserva {
         this.daoReserva = daoReserva;
     }
 
-    public DtoReserva obtenerReserva(int numeroReserva){
+    public DtoReserva obtenerReserva(int numeroReserva) {
         return daoReserva.obtenerReserva(numeroReserva);
     }
 
-    public List<DtoReserva> listar(){
+    public List<DtoReserva> listar() {
         return daoReserva.listar();
     }
 
-    public List<DtoReserva> listarPorEstado(String estado){
-        return daoReserva.consultarReservaEstado(estado) ;
+    public List<DtoReserva> listarPorEstado(String estado) {
+        return daoReserva.consultarReservaEstado(estado);
     }
 
-    public List<String> listarEstados(){
+    public List<String> listarEstados() {
         return EstadoReserva.getEstados();
     }
 

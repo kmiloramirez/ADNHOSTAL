@@ -8,7 +8,7 @@ import com.ceiba.reserva.servicio.ServicioActualizarReserva;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ManejadorActualizarReserva  implements ManejadorComando<ComandoReserva> {
+public class ManejadorActualizarReserva implements ManejadorComando<ComandoReserva> {
 
     private final FabricaReserva fabricaReserva;
     private final ServicioActualizarReserva servicioActualizarReserva;

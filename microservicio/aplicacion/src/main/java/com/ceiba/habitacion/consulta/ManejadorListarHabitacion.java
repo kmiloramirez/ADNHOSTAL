@@ -15,7 +15,7 @@ public class ManejadorListarHabitacion {
         this.daoHabitacion = daoHabitacion;
     }
 
-    public List<DtoHabitacion> ejecutar (){
+    public List<DtoHabitacion> ejecutar() {
         return daoHabitacion.listar();
     }
 }

@@ -13,7 +13,7 @@ public class ManejadorCobroReserva {
         this.servicioCobrarReserva = servicioCobrarReserva;
     }
 
-    public DtoReservaCobro ejecutar(Integer numeroReserva){
+    public DtoReservaCobro ejecutar(Integer numeroReserva) {
         return servicioCobrarReserva.ejecutar(numeroReserva);
     }
 }
