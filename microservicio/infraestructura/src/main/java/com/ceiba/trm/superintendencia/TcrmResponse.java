@@ -1,4 +1,3 @@
-
 package com.ceiba.trm.superintendencia;
 
 import org.apache.axis.description.ElementDesc;
@@ -13,112 +12,100 @@ import java.io.Serializable;
 
 /**
  * Business TRM response
- * @author Alex Vicente Chacon Jimenez (alex.chacon@software-colombia.com)
  *
+ * @author Alex Vicente Chacon Jimenez (alex.chacon@software-colombia.com)
  */
-public class TcrmResponse extends Tcrm implements Serializable
-{
-	private static final String W3_XMLSCHEMA_URI = "http://www.w3.org/2001/XMLSchema";
+public class TcrmResponse extends Tcrm implements Serializable {
+    private static final String W3_XMLSCHEMA_URI = "http://www.w3.org/2001/XMLSchema";
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
+    private static final TypeDesc typeDesc = new TypeDesc(TcrmResponse.class, true);
 
-	private String message;
+    static {
+        typeDesc.setXmlType(new QName("http://action.trm.services.generic.action.superfinanciera.nexura.sc.com.co/", "tcrmResponse"));
+        ElementDesc elemField = new ElementDesc();
+        elemField.setFieldName("message");
+        elemField.setXmlName(new QName("", "message"));
+        elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, "string"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
 
-	private Boolean success;
+        elemField = new ElementDesc();
+        elemField.setFieldName("success");
+        elemField.setXmlName(new QName("", "success"));
+        elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, "boolean"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+    }
 
-	private static final TypeDesc typeDesc = new TypeDesc(TcrmResponse.class, true);
+    private String message;
+    private Boolean success;
 
-	/**
-	 * Empty constructor. Please do not delete. Is used by introspection.
-	 */
-	public TcrmResponse()
-	{
-		//
-		// Empty constructor used by introspection
-	}
+    /**
+     * Empty constructor. Please do not delete. Is used by introspection.
+     */
+    public TcrmResponse() {
+        //
+        // Empty constructor used by introspection
+    }
 
-	/**
-	 * Gets the message value for this TcrmResponse.
-	 * 
-	 * @return message
-	 */
-	public String getMessage()
-	{
-		return message;
-	}
+    /**
+     * Return type metadata object
+     */
+    public static TypeDesc getTypeDesc() {
+        return typeDesc;
+    }
 
-	/**
-	 * Sets the message value for this TcrmResponse.
-	 * 
-	 * @param message message to set
-	 */
-	public void setMessage(String message)
-	{
-		this.message = message;
-	}
+    /**
+     * Get Custom Serializer
+     */
+    public static Serializer getSerializer(String machType, Class<?> javaType, QName xmlType) {
+        return new BeanSerializer(javaType, xmlType, typeDesc);
+    }
 
-	/**
-	 * Gets the success value for this TcrmResponse.
-	 * 
-	 * @return success
-	 */
-	public Boolean getSuccess()
-	{
-		return success;
-	}
+    /**
+     * Get Custom Deserializer
+     */
+    public static Deserializer getDeserializer(String machType, Class<?> javaType, QName xmlType) {
+        return new BeanDeserializer(javaType, xmlType, typeDesc);
+    }
 
-	/**
-	 * Sets the success value for this TcrmResponse.
-	 * 
-	 * @param success the flag to set
-	 */
-	public void setSuccess(Boolean success)
-	{
-		this.success = success;
-	}
+    /**
+     * Gets the message value for this TcrmResponse.
+     *
+     * @return message
+     */
+    public String getMessage() {
+        return message;
+    }
 
-	static
-	{
-		typeDesc.setXmlType(new QName( "http://action.trm.services.generic.action.superfinanciera.nexura.sc.com.co/", "tcrmResponse"));
-		ElementDesc elemField = new ElementDesc();
-		elemField.setFieldName("message");
-		elemField.setXmlName(new QName("", "message"));
-		elemField.setXmlType(new QName( W3_XMLSCHEMA_URI, "string"));
-		elemField.setMinOccurs(0);
-		elemField.setNillable(false);
-		typeDesc.addFieldDesc(elemField);
+    /**
+     * Sets the message value for this TcrmResponse.
+     *
+     * @param message message to set
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-		elemField = new ElementDesc();
-		elemField.setFieldName("success");
-		elemField.setXmlName(new QName("", "success"));
-		elemField.setXmlType(new QName(W3_XMLSCHEMA_URI, "boolean"));
-		elemField.setMinOccurs(0);
-		elemField.setNillable(false);
-		typeDesc.addFieldDesc(elemField);
-	}
+    /**
+     * Gets the success value for this TcrmResponse.
+     *
+     * @return success
+     */
+    public Boolean getSuccess() {
+        return success;
+    }
 
-	/**
-	 * Return type metadata object
-	 */
-	public static TypeDesc getTypeDesc()
-	{
-		return typeDesc;
-	}
-
-	/**
-	 * Get Custom Serializer
-	 */
-	public static Serializer getSerializer(String machType, Class<?> javaType, QName xmlType)
-	{
-		return new BeanSerializer(javaType, xmlType, typeDesc);
-	}
-
-	/**
-	 * Get Custom Deserializer
-	 */
-	public static Deserializer getDeserializer(String machType, Class<?> javaType, QName xmlType)
-	{
-		return new BeanDeserializer(javaType, xmlType, typeDesc);
-	}
+    /**
+     * Sets the success value for this TcrmResponse.
+     *
+     * @param success the flag to set
+     */
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
 
 }
