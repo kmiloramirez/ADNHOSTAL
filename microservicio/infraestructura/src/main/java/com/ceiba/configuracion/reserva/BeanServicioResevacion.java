@@ -5,10 +5,9 @@ import com.ceiba.habitacion.puerto.repositorio.RepositorioHabitacion;
 import com.ceiba.reserva.cobro.*;
 import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
-import com.ceiba.reserva.servicio.ServicioActualizarReserva;
-import com.ceiba.reserva.servicio.ServicioCalcularPrecioReserva;
-import com.ceiba.reserva.servicio.ServicioCrearReserva;
-import com.ceiba.reserva.servicio.ServicioEliminarReserva;
+import com.ceiba.reserva.servicio.*;
+import com.ceiba.trm.puerto.repositorio.RepositorioTrm;
+import com.ceiba.trm.servicio.ServicioConsultarTrm;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -43,5 +42,16 @@ public class BeanServicioResevacion {
     public ServicioEliminarReserva servicioEliminarReserva(RepositorioReserva repositorioReserva,
                                                            DaoReserva daoReserva){
         return new ServicioEliminarReserva(repositorioReserva, daoReserva);
+    }
+
+    @Bean
+    public ServicioConsultarTrm servicioConsultarTrm(RepositorioTrm repositorioTrm){
+        return new ServicioConsultarTrm(repositorioTrm);
+    }
+
+    @Bean
+    public ServicioCobrarReserva servicioCobrarReserva(RepositorioReserva repositorioReserva, DaoReserva daoReserva,
+                                                       ServicioConsultarTrm servicioConsultarTrm){
+        return new ServicioCobrarReserva(repositorioReserva,daoReserva,servicioConsultarTrm);
     }
 }

@@ -48,13 +48,14 @@ public class Reserva {
         fechaEntrada = setearHoraDeEntradaHanitacion(fechaEntrada);
         fechaSalida = setearHoraDeSalidaHanitacion(fechaSalida);
 
+        this.numeroReserva = 1;
         this.nombre = nombre;
         this.fechaEntrada = fechaEntrada;
         this.numeroHabitacion = numeroHabitacion;
         this.fechaSalida = fechaSalida;
         this.fechaRegistro = LocalDate.now();
         this.costoTotal = 0.0;
-        this.estadoReserva = "";
+        this.estadoReserva = EstadoReserva.RESEVADO.getEstado();
     }
 
     public Reserva(int numeroReserva, String nombre,String estadoReserva) {

@@ -3,6 +3,7 @@ package com.ceiba.reserva.modelo.entidad;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
+import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
 import com.ceiba.reserva.modelo.testdatabuilder.ReservaTestDataBuilder;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ class ReservaTest {
         assertEquals(fechaSalidaEsperada, reserva.getFechaSalida());
         assertEquals(LocalDate.now(), reserva.getFechaRegistro());
         assertEquals(0.0, reserva.getCostoTotal());
-        assertEquals("", reserva.getEstadoReserva());
+        assertEquals(EstadoReserva.RESEVADO.getEstado(), reserva.getEstadoReserva());
     }
 
     @Test

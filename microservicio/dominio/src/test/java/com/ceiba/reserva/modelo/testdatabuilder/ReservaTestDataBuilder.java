@@ -62,5 +62,11 @@ public class ReservaTestDataBuilder {
         return new Reserva(numeroReserva,nombre,estadoReserva);
     }
 
+    public Reserva buildConCostoTotal(double costoTotal) {
+        Reserva reserva = new Reserva(nombre, fechaEntrada, numeroHabitacion, fechaSalida);
+        reserva.setCostoTotal(costoTotal);
+        return reserva;
+    }
+
 
 }
