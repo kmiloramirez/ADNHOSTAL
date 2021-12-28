@@ -1,6 +1,7 @@
 package com.ceiba.reserva.controlador;
 
 import com.ceiba.ApplicationMock;
+import com.ceiba.reserva.modelo.dto.DtoReserva;
 import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,6 +39,9 @@ class ConsultaControladorReservaTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
 
     @Test
     void obtenerReserva() throws Exception {
@@ -44,6 +52,18 @@ class ConsultaControladorReservaTest {
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+        DtoReserva reservaEncontrada = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
+                DtoReserva.class);
+        LocalDateTime fechaEntradaEsperada = LocalDateTime.of(2021,12,24,15,00,00,0);
+        LocalDateTime fechaSalidaEsperada = LocalDateTime.of(2021,12,25,12,00,00,0);
+        LocalDate fechaRegistroEsperada = LocalDate.of(2021,12,23);
+        assertEquals(1,reservaEncontrada.getNumeroReserva());
+        assertEquals("Juan",reservaEncontrada.getNombre());
+        assertEquals(fechaEntradaEsperada,reservaEncontrada.getFechaEntrada());
+        assertEquals("101",reservaEncontrada.getNumeroHabitacion());
+        assertEquals(fechaSalidaEsperada,reservaEncontrada.getFechaSalida());
+        assertEquals(100000,reservaEncontrada.getCostoTotal());
+        assertEquals("reservado",reservaEncontrada.getEstadoReserva());
 
     }
 

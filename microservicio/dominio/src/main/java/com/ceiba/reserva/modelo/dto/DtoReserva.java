@@ -3,11 +3,13 @@ package com.ceiba.reserva.modelo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class DtoReserva {
     private int numeroReserva;
