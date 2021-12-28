@@ -35,7 +35,7 @@ class ReservaTest {
 
         Reserva reserva = new ReservaTestDataBuilder().buildActualizar();
 
-        assertEquals(1, reserva.getNumeroReserva());
+        assertEquals(1, reserva.getId());
         assertEquals("prueba", reserva.getNombre());
         assertEquals("reservado", reserva.getEstadoReserva());
     }
@@ -127,8 +127,8 @@ class ReservaTest {
     }
 
     @Test
-    void crearReservaConNumeroReservaNegativo() {
-        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conNumeroReserva(-1);
+    void crearReservaConIdNegativo() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conId(-1);
 
         BasePrueba.assertThrows(() -> {
             reservaTestDataBuilder.buildActualizar();

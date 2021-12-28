@@ -1,5 +1,5 @@
 SELECT *
 FROM reserva
-WHERE numeroReserva = :numeroReserva
+WHERE id = :numeroReserva
 
 

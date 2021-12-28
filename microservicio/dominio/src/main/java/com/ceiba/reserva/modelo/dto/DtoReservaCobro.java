@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 public class DtoReservaCobro {
 
-    private int numeroReserva;
+    private int id;
     private String numeroHabitacion;
     private LocalDateTime fechaSalida;
     private double costoTotalPesos;

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult {
     @Override
     public DtoReserva mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-        int numeroReserva = resultSet.getInt("numeroReserva");
+        int id = resultSet.getInt("id");
         String nombre = resultSet.getString("nombre");
         LocalDateTime fechaEntrada = extraerLocalDateTime(resultSet, "fechaEntrada");
         String numeroHabitacion = resultSet.getString("numeroHabitacion");
@@ -21,7 +21,7 @@ public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult {
         double costoTotal = resultSet.getDouble("costoTotal");
         String estadoReserva = resultSet.getString("estadoReserva");
 
-        return new DtoReserva(numeroReserva, nombre, fechaEntrada, numeroHabitacion, fechaSalida, fechaRegistro,
+        return new DtoReserva(id, nombre, fechaEntrada, numeroHabitacion, fechaSalida, fechaRegistro,
                 costoTotal, estadoReserva);
     }
 }

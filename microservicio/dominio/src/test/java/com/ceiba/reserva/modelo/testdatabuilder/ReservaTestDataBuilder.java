@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 public class ReservaTestDataBuilder {
 
-    private int numeroReserva;
+    private int id;
     private String nombre;
     private LocalDateTime fechaEntrada;
     private String numeroHabitacion;
@@ -15,7 +15,7 @@ public class ReservaTestDataBuilder {
 
 
     public ReservaTestDataBuilder() {
-        this.numeroReserva = 1;
+        this.id = 1;
         LocalDateTime fechaActual = LocalDateTime.now();
         this.nombre = "prueba";
         this.fechaEntrada = fechaActual.plusDays(1);
@@ -44,8 +44,8 @@ public class ReservaTestDataBuilder {
         return this;
     }
 
-    public ReservaTestDataBuilder conNumeroReserva(int numeroReserva) {
-        this.numeroReserva = numeroReserva;
+    public ReservaTestDataBuilder conId(int id) {
+        this.id = id;
         return this;
     }
 
@@ -59,7 +59,7 @@ public class ReservaTestDataBuilder {
     }
 
     public Reserva buildActualizar() {
-        return new Reserva(numeroReserva, nombre, estadoReserva);
+        return new Reserva(id, nombre, estadoReserva);
     }
 
     public Reserva buildConCostoTotal(double costoTotal) {

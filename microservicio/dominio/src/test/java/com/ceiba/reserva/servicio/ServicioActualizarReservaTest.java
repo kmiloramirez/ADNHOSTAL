@@ -23,18 +23,18 @@ class ServicioActualizarReservaTest {
     @Test
     void ejecutar() {
         Reserva reserva = new ReservaTestDataBuilder().build();
-        Mockito.doReturn(true).when(repositorioReserva).existeReserva(reserva.getNumeroReserva());
+        Mockito.doReturn(true).when(repositorioReserva).existeReserva(reserva.getId());
 
         servicioActualizarReserva.ejecutar(reserva);
 
-        Mockito.verify(repositorioReserva).existeReserva(reserva.getNumeroReserva());
+        Mockito.verify(repositorioReserva).existeReserva(reserva.getId());
         Mockito.verify(repositorioReserva).actualizar(reserva);
     }
 
     @Test
     void ejecutarReservaNoExiste() {
         Reserva reserva = new ReservaTestDataBuilder().build();
-        Mockito.doReturn(false).when(repositorioReserva).existeReserva(reserva.getNumeroReserva());
+        Mockito.doReturn(false).when(repositorioReserva).existeReserva(reserva.getId());
 
         BasePrueba.assertThrows(() -> servicioActualizarReserva.ejecutar(reserva),
                 ExcepcionSinDatos.class, "La reservar no existe");

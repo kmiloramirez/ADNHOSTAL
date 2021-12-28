@@ -16,7 +16,7 @@ public class ServicioActualizarReserva {
     }
 
     public void ejecutar(Reserva reserva) {
-        validarExisteReserva(reserva.getNumeroReserva());
+        validarExisteReserva(reserva.getId());
         repositorioReserva.actualizar(reserva);
     }
 

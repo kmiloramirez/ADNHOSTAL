@@ -24,7 +24,7 @@ public class Reserva {
     private static final String SE_DEBE_INGRESAR_EL_ESTADO = "Se debe ingresar un estado";
     private static final String SE_DEBE_INGRESAR_EL_ESTADO_VALIDO = "Se debe ingresar un estado valido";
 
-    private int numeroReserva;
+    private int id;
     private String nombre;
     private LocalDateTime fechaEntrada;
     private String numeroHabitacion;
@@ -48,7 +48,7 @@ public class Reserva {
         fechaEntrada = setearHoraDeEntradaHanitacion(fechaEntrada);
         fechaSalida = setearHoraDeSalidaHanitacion(fechaSalida);
 
-        this.numeroReserva = 1;
+        this.id = 1;
         this.nombre = nombre;
         this.fechaEntrada = fechaEntrada;
         this.numeroHabitacion = numeroHabitacion;
@@ -58,9 +58,9 @@ public class Reserva {
         this.estadoReserva = EstadoReserva.RESEVADO.getEstado();
     }
 
-    public Reserva(int numeroReserva, String nombre, String estadoReserva) {
+    public Reserva(int id, String nombre, String estadoReserva) {
 
-        validarPositivo(numeroReserva, EL_NUMERO_RESERVA_DEBE_SER_POSITIVO);
+        validarPositivo(id, EL_NUMERO_RESERVA_DEBE_SER_POSITIVO);
         validarObligatorio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
         validarNoVacio(nombre, SE_DEBE_INGRESAR_EL_NOMBRE);
         validarObligatorio(estadoReserva, SE_DEBE_INGRESAR_EL_ESTADO);
@@ -68,7 +68,7 @@ public class Reserva {
         validarContenidoLista(estadoReserva, EstadoReserva.getEstados(), SE_DEBE_INGRESAR_EL_ESTADO_VALIDO);
 
 
-        this.numeroReserva = numeroReserva;
+        this.id = id;
         this.nombre = nombre;
         this.estadoReserva = estadoReserva;
     }

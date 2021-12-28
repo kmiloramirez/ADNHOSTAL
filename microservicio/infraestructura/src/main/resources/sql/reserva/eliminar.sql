@@ -1,3 +1,3 @@
 delete 
 from reserva
-where numeroReserva = :numeroReserva
+where id = :numeroReserva

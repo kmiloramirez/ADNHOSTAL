@@ -47,7 +47,7 @@ class ServicioCobrarReservaTest {
         String errorTrm = "Error consultando trm";
         Mockito.doReturn(true).when(repositorioReserva).existeReserva(numeroReserva);
         Reserva reserva = new ReservaTestDataBuilder().buildConCostoTotal(costoTotal);
-        DtoReserva reservaConsultada = new DtoReserva(reserva.getNumeroReserva(), reserva.getNombre(), reserva.getFechaEntrada(),
+        DtoReserva reservaConsultada = new DtoReserva(reserva.getId(), reserva.getNombre(), reserva.getFechaEntrada(),
                 reserva.getNumeroHabitacion(), reserva.getFechaSalida(), reserva.getFechaRegistro(), reserva.getCostoTotal(),
                 reserva.getEstadoReserva());
         Mockito.doReturn(reservaConsultada).when(daoReserva).obtenerReserva(numeroReserva);
@@ -57,7 +57,7 @@ class ServicioCobrarReservaTest {
 
         DtoReservaCobro resultado = servicioCobrarReserva.ejecutar(numeroReserva);
 
-        assertEquals(reservaConsultada.getNumeroReserva(), resultado.getNumeroReserva());
+        assertEquals(reservaConsultada.getNumeroReserva(), resultado.getId());
         assertEquals(reservaConsultada.getNumeroHabitacion(), resultado.getNumeroHabitacion());
         assertEquals(reservaConsultada.getFechaSalida(), resultado.getFechaSalida());
         assertEquals(costoTotal, resultado.getCostoTotalPesos());
@@ -73,7 +73,7 @@ class ServicioCobrarReservaTest {
         double valorTrm = 4000.0;
         Mockito.doReturn(true).when(repositorioReserva).existeReserva(numeroReserva);
         Reserva reserva = new ReservaTestDataBuilder().buildConCostoTotal(costoTotal);
-        DtoReserva reservaConsultada = new DtoReserva(reserva.getNumeroReserva(), reserva.getNombre(), reserva.getFechaEntrada(),
+        DtoReserva reservaConsultada = new DtoReserva(reserva.getId(), reserva.getNombre(), reserva.getFechaEntrada(),
                 reserva.getNumeroHabitacion(), reserva.getFechaSalida(), reserva.getFechaRegistro(), reserva.getCostoTotal(),
                 reserva.getEstadoReserva());
         Mockito.doReturn(reservaConsultada).when(daoReserva).obtenerReserva(numeroReserva);
@@ -82,7 +82,7 @@ class ServicioCobrarReservaTest {
 
         DtoReservaCobro resultado = servicioCobrarReserva.ejecutar(numeroReserva);
 
-        assertEquals(reservaConsultada.getNumeroReserva(), resultado.getNumeroReserva());
+        assertEquals(reservaConsultada.getNumeroReserva(), resultado.getId());
         assertEquals(reservaConsultada.getNumeroHabitacion(), resultado.getNumeroHabitacion());
         assertEquals(reservaConsultada.getFechaSalida(), resultado.getFechaSalida());
         assertEquals(costoTotal, resultado.getCostoTotalPesos());
