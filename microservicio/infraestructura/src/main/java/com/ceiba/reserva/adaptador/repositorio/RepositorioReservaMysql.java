@@ -48,8 +48,7 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         paramSource.addValue("fechaEntrada", fechaEntrada);
         paramSource.addValue("fechaSalida", fechaSalida);
 
-        return !this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                .queryForObject(sqlExisteDisponibilidadHabitacion, paramSource, Boolean.class);
+        return !(this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteDisponibilidadHabitacion, paramSource, Boolean.class));
     }
 
     @Override

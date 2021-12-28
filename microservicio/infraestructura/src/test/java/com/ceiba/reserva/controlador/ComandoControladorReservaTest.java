@@ -51,6 +51,22 @@ class ComandoControladorReservaTest {
     }
 
     @Test
+    void crearCuandoLaHabitacionNoEstaDisponible() throws Exception {
+
+        ComandoReserva comandoReserva = new ComandoReservaTestDataBuilder().build();
+        MockHttpServletRequestBuilder request1 = post(COMANDO_CONTROLADOR_RESERVA).contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comandoReserva));
+        MockHttpServletRequestBuilder request2 = post(COMANDO_CONTROLADOR_RESERVA).contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comandoReserva));
+
+        MvcResult result1 = mockMvc.perform(request1).andExpect(status().isOk()).andReturn();
+        MvcResult result2 = mockMvc.perform(request2).andExpect(status().isBadRequest()).andReturn();
+
+        assertThat(result1.getResponse().getStatus()).isEqualTo(200);
+        assertThat(result2.getResponse().getStatus()).isEqualTo(400);
+    }
+
+    @Test
     void actualizarEstado() throws Exception {
 
         ComandoReserva comandoReserva = new ComandoReservaTestDataBuilder()
