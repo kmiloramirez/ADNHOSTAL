@@ -1,11 +1,15 @@
 package com.ceiba.trm.superintendencia;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.xml.rpc.ServiceException;
 import javax.xml.rpc.Stub;
 import java.rmi.RemoteException;
 import java.util.Calendar;
 
 public class TCRMServicesInterfaceProxy implements TCRMServicesInterface {
+    private static final Logger LOGGER = LoggerFactory.getLogger(TCRMServicesInterfaceProxy.class);
     private static final String ENDPOINT_PROPERTY = "javax.xml.rpc.service.endpoint.address";
     private String endPoint;
     private TCRMServicesInterface tCRMServicesInterface = null;
@@ -32,6 +36,7 @@ public class TCRMServicesInterfaceProxy implements TCRMServicesInterface {
                 initTCRMServicesInterfaceProxy();
             return this.tCRMServicesInterface.queryTCRM(trmQueryAssociatedDate);
         }catch (RemoteException | ServiceException e){
+            LOGGER.info(e.getMessage());
             throw  new RemoteException(e.getMessage());
         }
     }
