@@ -61,14 +61,14 @@ public class TcrmResponse extends Tcrm implements Serializable {
     /**
      * Get Custom Serializer
      */
-    public static Serializer getSerializer(String machType, Class<?> javaType, QName xmlType) {
+    public static Serializer getSerializer( Class<?> javaType, QName xmlType) {
         return new BeanSerializer(javaType, xmlType, typeDesc);
     }
 
     /**
      * Get Custom Deserializer
      */
-    public static Deserializer getDeserializer(String machType, Class<?> javaType, QName xmlType) {
+    public static Deserializer getDeserializer( Class<?> javaType, QName xmlType) {
         return new BeanDeserializer(javaType, xmlType, typeDesc);
     }
 
