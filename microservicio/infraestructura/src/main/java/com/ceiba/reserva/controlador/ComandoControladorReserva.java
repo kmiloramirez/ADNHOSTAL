@@ -39,19 +39,19 @@ public class ComandoControladorReserva {
 
     @PatchMapping
     @ApiOperation("Actualizar Estado Reserva")
-    public void actualizarEstado (@RequestBody ComandoReserva comandoReserva){
+    public void actualizarEstado(@RequestBody ComandoReserva comandoReserva) {
         manejadorActualizarReserva.ejecutar(comandoReserva);
     }
 
     @DeleteMapping
     @ApiOperation("Elimina Reserva")
-    public void eliminarReserva (@RequestParam Integer numeroReserva){
+    public void eliminarReserva(@RequestParam Integer numeroReserva) {
         manejadorEliminarReserva.ejecutar(numeroReserva);
     }
 
     @PutMapping
     @ApiOperation("Cobrar La Reserva")
-    public DtoReservaCobro cobrarReserva(@RequestParam Integer numeroReserva){
+    public DtoReservaCobro cobrarReserva(@RequestParam Integer numeroReserva) {
         return manejadorCobroReserva.ejecutar(numeroReserva);
     }
 }

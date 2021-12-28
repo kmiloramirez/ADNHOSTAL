@@ -22,7 +22,7 @@ public class ConsulraControladorTrm {
 
     @GetMapping
     @ApiOperation("Consultar Trm Del Dia")
-    public double consultarTrmDia(){
+    public double consultarTrmDia() {
         return manejadorConsultaTrm.ejecutar(LocalDate.now());
     }
 }

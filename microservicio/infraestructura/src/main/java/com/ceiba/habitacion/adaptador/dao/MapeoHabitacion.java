@@ -17,7 +17,7 @@ public class MapeoHabitacion implements RowMapper<DtoHabitacion>, MapperResult {
         double precio = resultSet.getDouble("precio");
         String descripcion = resultSet.getString("descripcion");
 
-        return new DtoHabitacion(id,numero,camas,precio,descripcion);
+        return new DtoHabitacion(id, numero, camas, precio, descripcion);
     }
 }
 

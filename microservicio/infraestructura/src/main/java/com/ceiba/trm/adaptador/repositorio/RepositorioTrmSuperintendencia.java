@@ -22,19 +22,19 @@ public class RepositorioTrmSuperintendencia implements RepositorioTrm {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RepositorioTrmSuperintendencia.class);
 
-   @Value("${superintendencia.soap.end-point}")
-    private String endPoint ;
+    @Value("${superintendencia.soap.end-point}")
+    private String endPoint;
 
     @Override
-    public double obtenerTrm(LocalDate fechaConsultar)  {
+    public double obtenerTrm(LocalDate fechaConsultar) {
         Calendar fechaCalendar = convertirACalendar(fechaConsultar);
         try {
             TCRMServicesInterfaceProxy tcrmServicesInterfaceProxy = new TCRMServicesInterfaceProxy(endPoint);
             TcrmResponse tcrmResponse = tcrmServicesInterfaceProxy.queryTCRM(fechaCalendar);
             return tcrmResponse.getValue();
-        }catch (ServiceException | RemoteException e){
+        } catch (ServiceException | RemoteException e) {
             LOGGER.error(e.getMessage());
-            throw new ExcepcionTrm(ERROR_CONSULTANDO_TRM,e);
+            throw new ExcepcionTrm(ERROR_CONSULTANDO_TRM, e);
         }
     }
 

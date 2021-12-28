@@ -24,7 +24,7 @@ public class ConsultaControladorHabitacion {
 
     @GetMapping
     @ApiOperation("Listar Habitaciones")
-    public List<DtoHabitacion> listar(){
+    public List<DtoHabitacion> listar() {
         return manejadorListarHabitacion.ejecutar();
     }
 

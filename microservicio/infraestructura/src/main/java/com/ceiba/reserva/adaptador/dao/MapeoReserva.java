@@ -14,14 +14,14 @@ public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult {
     public DtoReserva mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         int numeroReserva = resultSet.getInt("numeroReserva");
         String nombre = resultSet.getString("nombre");
-        LocalDateTime fechaEntrada = extraerLocalDateTime(resultSet,"fechaEntrada");
+        LocalDateTime fechaEntrada = extraerLocalDateTime(resultSet, "fechaEntrada");
         String numeroHabitacion = resultSet.getString("numeroHabitacion");
-        LocalDateTime fechaSalida = extraerLocalDateTime(resultSet,"fechaSalida");
-        LocalDate fechaRegistro = extraerLocalDate(resultSet,"fechaRegistro");
+        LocalDateTime fechaSalida = extraerLocalDateTime(resultSet, "fechaSalida");
+        LocalDate fechaRegistro = extraerLocalDate(resultSet, "fechaRegistro");
         double costoTotal = resultSet.getDouble("costoTotal");
         String estadoReserva = resultSet.getString("estadoReserva");
 
-        return new DtoReserva(numeroReserva,nombre,fechaEntrada,numeroHabitacion,fechaSalida,fechaRegistro,
-                costoTotal,estadoReserva);
+        return new DtoReserva(numeroReserva, nombre, fechaEntrada, numeroHabitacion, fechaSalida, fechaRegistro,
+                costoTotal, estadoReserva);
     }
 }

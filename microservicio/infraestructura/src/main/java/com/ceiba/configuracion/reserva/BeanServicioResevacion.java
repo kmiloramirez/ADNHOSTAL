@@ -34,24 +34,24 @@ public class BeanServicioResevacion {
     }
 
     @Bean
-    public ServicioActualizarReserva servicioActualizarReserva(RepositorioReserva repositorioReserva){
+    public ServicioActualizarReserva servicioActualizarReserva(RepositorioReserva repositorioReserva) {
         return new ServicioActualizarReserva(repositorioReserva);
     }
 
     @Bean
     public ServicioEliminarReserva servicioEliminarReserva(RepositorioReserva repositorioReserva,
-                                                           DaoReserva daoReserva){
+                                                           DaoReserva daoReserva) {
         return new ServicioEliminarReserva(repositorioReserva, daoReserva);
     }
 
     @Bean
-    public ServicioConsultarTrm servicioConsultarTrm(RepositorioTrm repositorioTrm){
+    public ServicioConsultarTrm servicioConsultarTrm(RepositorioTrm repositorioTrm) {
         return new ServicioConsultarTrm(repositorioTrm);
     }
 
     @Bean
     public ServicioCobrarReserva servicioCobrarReserva(RepositorioReserva repositorioReserva, DaoReserva daoReserva,
-                                                       ServicioConsultarTrm servicioConsultarTrm){
-        return new ServicioCobrarReserva(repositorioReserva,daoReserva,servicioConsultarTrm);
+                                                       ServicioConsultarTrm servicioConsultarTrm) {
+        return new ServicioCobrarReserva(repositorioReserva, daoReserva, servicioConsultarTrm);
     }
 }

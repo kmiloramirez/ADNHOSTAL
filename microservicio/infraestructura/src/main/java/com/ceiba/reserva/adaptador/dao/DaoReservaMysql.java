@@ -16,7 +16,6 @@ public class DaoReservaMysql implements DaoReserva {
     private static final String NO_SE_ENCONTRO_EL_NUMERO_RESERVA = "No se encontró la reserva con el numero: %s";
 
 
-
     @SqlStatement(namespace = "reserva", value = "obtenerReserva")
     private static String sqlObtenerReserva;
     @SqlStatement(namespace = "reserva", value = "listar")
@@ -36,7 +35,7 @@ public class DaoReservaMysql implements DaoReserva {
     public DtoReserva obtenerReserva(int numeroReserva) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("numeroReserva", numeroReserva);
-        List<DtoReserva> reservas =this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+        List<DtoReserva> reservas = this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
                 .query(sqlObtenerReserva, paramSource, new MapeoReserva());
         return reservas.stream().findFirst().orElseThrow(() -> new ExcepcionTecnica(
                 String.format(NO_SE_ENCONTRO_EL_NUMERO_RESERVA, numeroReserva)));
