@@ -2,6 +2,7 @@ package com.ceiba.habitacion.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.habitacion.comando.ComandoHabitacion;
+import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.habitacion.testdatabuilder.ComandoHabitacionTesDataBuider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -17,8 +18,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -35,8 +36,11 @@ class ComandoControladorHabitacionTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private DaoHabitacion daoHabitacion;
+
     @Test
-    void crear() throws Exception{
+    void crear() throws Exception {
 
         ComandoHabitacion comandoHabitacion = new ComandoHabitacionTesDataBuider().conNumero("102").build();
 
@@ -46,6 +50,9 @@ class ComandoControladorHabitacionTest {
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+
+        double precio = daoHabitacion.obtenerPrecioHabitacion("102");
+        assertEquals(100000.0, precio);
 
     }
 }

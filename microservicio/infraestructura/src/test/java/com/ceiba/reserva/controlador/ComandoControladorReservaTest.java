@@ -1,9 +1,12 @@
 package com.ceiba.reserva.controlador;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.habitacion.controlador.ComandoControladorHabitacion;
+import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.reserva.comando.ComandoReserva;
+import com.ceiba.reserva.modelo.dto.DtoReserva;
+import com.ceiba.reserva.modelo.dto.DtoReservaCobro;
 import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
+import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.testdatabuilder.ComandoReservaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -19,11 +22,12 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(ComandoControladorHabitacion.class)
+@WebMvcTest(ComandoControladorReserva.class)
 @ContextConfiguration(classes = ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class ComandoControladorReservaTest {
@@ -38,6 +42,12 @@ class ComandoControladorReservaTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private DaoReserva daoReserva;
+
+    @Autowired
+    private DaoHabitacion daoHabitacion;
+
     @Test
     void crear() throws Exception {
 
@@ -48,6 +58,10 @@ class ComandoControladorReservaTest {
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+
+        DtoReserva dtoReserva = daoReserva.obtenerReserva(2);
+        assertEquals(EstadoReserva.RESEVADO.getEstado(), dtoReserva.getEstadoReserva());
+
     }
 
     @Test
@@ -77,6 +91,10 @@ class ComandoControladorReservaTest {
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+
+
+        DtoReserva dtoReserva = daoReserva.obtenerReserva(1);
+        assertEquals(EstadoReserva.ACTIVA.getEstado(), dtoReserva.getEstadoReserva());
     }
 
     @Test
@@ -89,6 +107,7 @@ class ComandoControladorReservaTest {
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+
     }
 
     @Test
@@ -100,5 +119,11 @@ class ComandoControladorReservaTest {
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+
+        DtoReservaCobro reservaCobro = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
+                DtoReservaCobro.class);
+
+        double precioHabitacion = daoHabitacion.obtenerPrecioHabitacion(reservaCobro.getNumeroHabitacion());
+        assertEquals(100000.0, precioHabitacion);
     }
 }

@@ -46,15 +46,14 @@ class ConsultaControladorHabitacionTest {
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
         List<DtoHabitacion> listaHabitaciones = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
-                new TypeReference<List<DtoHabitacion>>(){});
+                new TypeReference<List<DtoHabitacion>>() {
+                });
         DtoHabitacion dtoHabitacion = listaHabitaciones.get(0);
-        assertEquals(1,dtoHabitacion.getId());
-        assertEquals("101",dtoHabitacion.getNumero());
-        assertEquals(1,dtoHabitacion.getCamas());
-        assertEquals(100000,dtoHabitacion.getPrecio());
-        assertEquals("prueba",dtoHabitacion.getDescripcion());
-
-
+        assertEquals(1, dtoHabitacion.getId());
+        assertEquals("101", dtoHabitacion.getNumero());
+        assertEquals(1, dtoHabitacion.getCamas());
+        assertEquals(100000, dtoHabitacion.getPrecio());
+        assertEquals("prueba", dtoHabitacion.getDescripcion());
 
 
     }

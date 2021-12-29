@@ -3,6 +3,7 @@ package com.ceiba.reserva.controlador;
 import com.ceiba.ApplicationMock;
 import com.ceiba.reserva.modelo.dto.DtoReserva;
 import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +19,7 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,7 +47,7 @@ class ConsultaControladorReservaTest {
 
     @Test
     void obtenerReserva() throws Exception {
-        int numeroReserva =1;
+        int numeroReserva = 1;
         MockHttpServletRequestBuilder request = get(CONSULTA_CONTROLADOR_RESERVA).contentType(MediaType.APPLICATION_JSON)
                 .param("numeroReserva", String.valueOf(numeroReserva));
 
@@ -54,22 +56,23 @@ class ConsultaControladorReservaTest {
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
         DtoReserva reservaEncontrada = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
                 DtoReserva.class);
-        LocalDateTime fechaEntradaEsperada = LocalDateTime.of(2021,12,24,15,00,00,0);
-        LocalDateTime fechaSalidaEsperada = LocalDateTime.of(2021,12,25,12,00,00,0);
-        LocalDate fechaRegistroEsperada = LocalDate.of(2021,12,23);
-        assertEquals(1,reservaEncontrada.getNumeroReserva());
-        assertEquals("Juan",reservaEncontrada.getNombre());
-        assertEquals(fechaEntradaEsperada,reservaEncontrada.getFechaEntrada());
-        assertEquals("101",reservaEncontrada.getNumeroHabitacion());
-        assertEquals(fechaSalidaEsperada,reservaEncontrada.getFechaSalida());
-        assertEquals(100000,reservaEncontrada.getCostoTotal());
-        assertEquals("reservado",reservaEncontrada.getEstadoReserva());
+        LocalDateTime fechaEntradaEsperada = LocalDateTime.of(2021, 12, 24, 15, 00, 00, 0);
+        LocalDateTime fechaSalidaEsperada = LocalDateTime.of(2021, 12, 25, 12, 00, 00, 0);
+        LocalDate fechaRegistroEsperada = LocalDate.of(2021, 12, 23);
+        assertEquals(1, reservaEncontrada.getNumeroReserva());
+        assertEquals("Juan", reservaEncontrada.getNombre());
+        assertEquals(fechaEntradaEsperada, reservaEncontrada.getFechaEntrada());
+        assertEquals("101", reservaEncontrada.getNumeroHabitacion());
+        assertEquals(fechaSalidaEsperada, reservaEncontrada.getFechaSalida());
+        assertEquals(fechaRegistroEsperada, reservaEncontrada.getFechaRegistro());
+        assertEquals(100000, reservaEncontrada.getCostoTotal());
+        assertEquals("reservado", reservaEncontrada.getEstadoReserva());
 
     }
 
     @Test
     void obtenerReservaCuandoNoExisteReserva() throws Exception {
-        int numeroReserva =2;
+        int numeroReserva = 2;
         MockHttpServletRequestBuilder request = get(CONSULTA_CONTROLADOR_RESERVA).contentType(MediaType.APPLICATION_JSON)
                 .param("numeroReserva", String.valueOf(numeroReserva));
 
@@ -87,6 +90,13 @@ class ConsultaControladorReservaTest {
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+
+        List<DtoReserva> listaReservas = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
+                new TypeReference<List<DtoReserva>>() {
+                });
+
+        assertEquals(1, listaReservas.size());
+
     }
 
     @Test
@@ -97,16 +107,28 @@ class ConsultaControladorReservaTest {
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+
+        List<String> listaEstados = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
+                new TypeReference<List<String>>() {
+                });
+
+        assertEquals(3, listaEstados.size());
     }
 
     @Test
     void listarReservasEstado() throws Exception {
-        String estado  = EstadoReserva.RESEVADO.getEstado();
+        String estado = EstadoReserva.RESEVADO.getEstado();
         MockHttpServletRequestBuilder request = get(CONSULTA_CONTROLADOR_RESERVA_RESERVAS_ESTADO)
                 .contentType(MediaType.APPLICATION_JSON).param("estado", estado);
 
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+
+        List<DtoReserva> listaReservas = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
+                new TypeReference<List<DtoReserva>>() {
+                });
+
+        assertEquals(1, listaReservas.size());
     }
 }
