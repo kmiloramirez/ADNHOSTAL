@@ -28,7 +28,7 @@ public class ServicioCobrarReserva {
         try {
             valorTrm = obtenerValorTrm(reserva.getFechaSalida());
         } catch (ExcepcionTrm excepcionTrm) {
-            LOGGER.info(excepcionTrm.getMessage());
+            LOGGER.info(excepcionTrm.getMessage(),excepcionTrm);
             erroresProcesamiento = excepcionTrm.getMessage();
         }
         double valorDolares = darFormatoDosDecimales((reserva.getCostoTotal() / valorTrm));
