@@ -44,8 +44,7 @@ public class BeanServicioResevacion {
     }
 
     @Bean
-    public ServicioCobrarReserva servicioCobrarReserva(RepositorioReserva repositorioReserva,
-                                                       ServicioConsultarTrm servicioConsultarTrm) {
-        return new ServicioCobrarReserva(repositorioReserva, servicioConsultarTrm);
+    public ServicioCobrarReserva servicioCobrarReserva(ServicioConsultarTrm servicioConsultarTrm) {
+        return new ServicioCobrarReserva(servicioConsultarTrm);
     }
 }

@@ -4,7 +4,6 @@ import com.ceiba.reserva.comando.fabrica.FabricaReserva;
 import com.ceiba.reserva.modelo.dto.DtoReserva;
 import com.ceiba.reserva.modelo.dto.DtoReservaCobro;
 import com.ceiba.reserva.modelo.entidad.Reserva;
-import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
 import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.servicio.ServicioActualizarReserva;
 import com.ceiba.reserva.servicio.ServicioCobrarReserva;

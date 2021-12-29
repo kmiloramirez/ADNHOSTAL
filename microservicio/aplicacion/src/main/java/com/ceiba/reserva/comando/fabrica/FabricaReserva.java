@@ -6,8 +6,6 @@ import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Component
 public class FabricaReserva {

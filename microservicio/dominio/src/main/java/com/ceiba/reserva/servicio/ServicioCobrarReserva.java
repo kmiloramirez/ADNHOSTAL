@@ -1,12 +1,8 @@
 package com.ceiba.reserva.servicio;
 
-import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import com.ceiba.infraestructura.excepcion.ExcepcionTrm;
-import com.ceiba.reserva.modelo.dto.DtoReserva;
 import com.ceiba.reserva.modelo.dto.DtoReservaCobro;
 import com.ceiba.reserva.modelo.entidad.Reserva;
-import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
-import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.trm.servicio.ServicioConsultarTrm;
 import org.slf4j.Logger;
@@ -19,13 +15,10 @@ import static com.ceiba.dominio.formato.FormatoDouble.darFormatoDosDecimales;
 public class ServicioCobrarReserva {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ServicioCobrarReserva.class);
-    private static final String LA_RESERVA_NO_EXISTE = "La reservar no existe";
 
-    private final RepositorioReserva repositorioReserva;
     private final ServicioConsultarTrm servicioConsultarTrm;
 
-    public ServicioCobrarReserva(RepositorioReserva repositorioReserva, ServicioConsultarTrm servicioConsultarTrm) {
-        this.repositorioReserva = repositorioReserva;
+    public ServicioCobrarReserva(ServicioConsultarTrm servicioConsultarTrm) {
         this.servicioConsultarTrm = servicioConsultarTrm;
     }
 

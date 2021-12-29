@@ -17,22 +17,18 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 class ServicioCobrarReservaTest {
 
     private ServicioCobrarReserva servicioCobrarReserva;
-    private RepositorioReserva repositorioReserva;
     private ServicioConsultarTrm servicioConsultarTrm;
 
     @BeforeEach
     void setUp() {
-        repositorioReserva = Mockito.mock(RepositorioReserva.class);
         servicioConsultarTrm = Mockito.mock(ServicioConsultarTrm.class);
-        servicioCobrarReserva = new ServicioCobrarReserva(repositorioReserva, servicioConsultarTrm);
+        servicioCobrarReserva = new ServicioCobrarReserva(servicioConsultarTrm);
     }
 
     @Test
     void ejecutarConErrorConsultaTrm() {
-        int numeroReserva = 1;
         double costoTotal = 4000.0;
         String errorTrm = "Error consultando trm";
-        Mockito.doReturn(true).when(repositorioReserva).existeReserva(numeroReserva);
         Reserva reserva = new ReservaTestDataBuilder().conCostoTotal(costoTotal).buildConTodosLosDatos();
         DtoReserva reservaConsultada = new DtoReserva(reserva.getId(), reserva.getNombre(), reserva.getFechaEntrada(),
                 reserva.getNumeroHabitacion(), reserva.getFechaSalida(), reserva.getFechaRegistro(), reserva.getCostoTotal(),
@@ -53,10 +49,8 @@ class ServicioCobrarReservaTest {
 
     @Test
     void ejecutarSinError() {
-        int numeroReserva = 1;
         double costoTotal = 4000.0;
         double valorTrm = 4000.0;
-        Mockito.doReturn(true).when(repositorioReserva).existeReserva(numeroReserva);
         Reserva reserva = new ReservaTestDataBuilder().conCostoTotal(costoTotal).buildConTodosLosDatos();
         DtoReserva reservaConsultada = new DtoReserva(reserva.getId(), reserva.getNombre(), reserva.getFechaEntrada(),
                 reserva.getNumeroHabitacion(), reserva.getFechaSalida(), reserva.getFechaRegistro(), reserva.getCostoTotal(),
