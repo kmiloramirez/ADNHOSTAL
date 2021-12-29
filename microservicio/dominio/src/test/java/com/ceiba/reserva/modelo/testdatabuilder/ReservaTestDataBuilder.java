@@ -2,6 +2,7 @@ package com.ceiba.reserva.modelo.testdatabuilder;
 
 import com.ceiba.reserva.modelo.entidad.Reserva;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ReservaTestDataBuilder {
@@ -11,7 +12,10 @@ public class ReservaTestDataBuilder {
     private LocalDateTime fechaEntrada;
     private String numeroHabitacion;
     private LocalDateTime fechaSalida;
+    private LocalDate fechaRegistro;
+    private double costoTotal;
     private String estadoReserva;
+
 
 
     public ReservaTestDataBuilder() {
@@ -21,6 +25,8 @@ public class ReservaTestDataBuilder {
         this.fechaEntrada = fechaActual.plusDays(1);
         this.numeroHabitacion = "prueba";
         this.fechaSalida = this.fechaEntrada.plusDays(1);
+        this.fechaRegistro = fechaActual.toLocalDate();
+        this.costoTotal = 100000.0;
         this.estadoReserva = "reservado";
     }
 
@@ -61,11 +67,14 @@ public class ReservaTestDataBuilder {
     public Reserva buildActualizar() {
         return new Reserva(id, nombre, estadoReserva);
     }
+    public Reserva buildConTodosLosDatos() {
+        return new Reserva(id, nombre,fechaEntrada,numeroHabitacion,fechaSalida,fechaRegistro,costoTotal, estadoReserva);
+    }
 
-    public Reserva buildConCostoTotal(double costoTotal) {
-        Reserva reserva = new Reserva(nombre, fechaEntrada, numeroHabitacion, fechaSalida);
-        reserva.setCostoTotal(costoTotal);
-        return reserva;
+    public ReservaTestDataBuilder conCostoTotal(double costoTotal) {
+        this.costoTotal =costoTotal;
+        return this;
+
     }
 
 

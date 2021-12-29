@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ReglaCobroDescuentoTest {
+class ReglaCobroDescuentoPorDiasTest {
 
     private ReglaCobroDescuentoPorDias reglaCobroDescuento;
 

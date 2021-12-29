@@ -3,7 +3,6 @@ package com.ceiba.reserva.modelo.entidad;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
-import com.ceiba.reserva.modelo.enumerador.EstadoReserva;
 import com.ceiba.reserva.modelo.testdatabuilder.ReservaTestDataBuilder;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class ReservaTest {
 
@@ -27,7 +27,7 @@ class ReservaTest {
         assertEquals(fechaSalidaEsperada, reserva.getFechaSalida());
         assertEquals(LocalDate.now(), reserva.getFechaRegistro());
         assertEquals(0.0, reserva.getCostoTotal());
-        assertEquals(EstadoReserva.RESEVADO.getEstado(), reserva.getEstadoReserva());
+        assertNull(reserva.getEstadoReserva());
     }
 
     @Test
@@ -161,5 +161,78 @@ class ReservaTest {
             reservaTestDataBuilder.buildActualizar();
         }, ExcepcionValorInvalido.class, "Se debe ingresar un estado valido");
     }
+
+    @Test
+    void crearReservaActualizarConErrorNombre() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conNombre(null);
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildActualizar();
+        }, ExcepcionValorObligatorio.class, "Se debe ingresar el nombre");
+    }
+
+    @Test
+    void crearReservaActualizarConErrorNombreVacio() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conNombre("");
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildActualizar();
+        }, ExcepcionValorObligatorio.class, "Se debe ingresar el nombre");
+    }
+
+    @Test
+    void crearReservaCambiarEstadoConIdNegativo() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conId(-1);
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildConTodosLosDatos();
+        }, ExcepcionValorInvalido.class, "El numero de reerva debe ser positivo");
+    }
+
+    @Test
+    void crearReservaCambiarEstadoConErrorNombre() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conNombre(null);
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildConTodosLosDatos();
+        }, ExcepcionValorObligatorio.class, "Se debe ingresar el nombre");
+    }
+
+    @Test
+    void crearReservaCambiarEstadoConErrorNombreVacio() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conNombre("");
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildConTodosLosDatos();
+        }, ExcepcionValorObligatorio.class, "Se debe ingresar el nombre");
+    }
+
+    @Test
+    void crearReservaCambiarEstadoConEstadoVacio() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conEstado("");
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildConTodosLosDatos();
+        }, ExcepcionValorObligatorio.class, "Se debe ingresar un estado");
+    }
+
+    @Test
+    void crearReservaCambiarEstadoConEstadoNulo() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conEstado(null);
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildConTodosLosDatos();
+        }, ExcepcionValorObligatorio.class, "Se debe ingresar un estado");
+    }
+
+    @Test
+    void crearReservaCambiarEstadoConEstadoNoValido() {
+        ReservaTestDataBuilder reservaTestDataBuilder = new ReservaTestDataBuilder().conEstado("prueba");
+
+        BasePrueba.assertThrows(() -> {
+            reservaTestDataBuilder.buildConTodosLosDatos();
+        }, ExcepcionValorInvalido.class, "Se debe ingresar un estado valido");
+    }
+
 
 }
