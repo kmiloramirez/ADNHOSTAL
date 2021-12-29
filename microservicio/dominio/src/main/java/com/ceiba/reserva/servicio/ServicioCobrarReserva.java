@@ -22,41 +22,29 @@ public class ServicioCobrarReserva {
     private static final String LA_RESERVA_NO_EXISTE = "La reservar no existe";
 
     private final RepositorioReserva repositorioReserva;
-    private final DaoReserva daoReserva;
     private final ServicioConsultarTrm servicioConsultarTrm;
 
-    public ServicioCobrarReserva(RepositorioReserva repositorioReserva, DaoReserva daoReserva, ServicioConsultarTrm servicioConsultarTrm) {
+    public ServicioCobrarReserva(RepositorioReserva repositorioReserva, ServicioConsultarTrm servicioConsultarTrm) {
         this.repositorioReserva = repositorioReserva;
-        this.daoReserva = daoReserva;
         this.servicioConsultarTrm = servicioConsultarTrm;
     }
 
-    public DtoReservaCobro ejecutar(int numeroReserva) {
-        validarExisteReserva(numeroReserva);
-        DtoReserva reservaConsultada = daoReserva.obtenerReserva(numeroReserva);
-        Reserva reserva = new Reserva(reservaConsultada.getNumeroReserva(), reservaConsultada.getNombre(),
-                EstadoReserva.TERMINADA.getEstado());
-        repositorioReserva.actualizar(reserva);
+    public DtoReservaCobro ejecutar(Reserva reserva) {
         double valorTrm = 1;
         String erroresProcesamiento = null;
         try {
-            valorTrm = obtenerValorTrm(reservaConsultada.getFechaSalida());
+            valorTrm = obtenerValorTrm(reserva.getFechaSalida());
         } catch (ExcepcionTrm excepcionTrm) {
             LOGGER.info(excepcionTrm.getMessage());
             erroresProcesamiento = excepcionTrm.getMessage();
         }
-        double valorDolares = darFormatoDosDecimales((reservaConsultada.getCostoTotal() / valorTrm));
-        return new DtoReservaCobro(numeroReserva, reservaConsultada.getNumeroHabitacion(), reservaConsultada.getFechaSalida(),
-                reservaConsultada.getCostoTotal(), valorDolares, valorTrm, erroresProcesamiento);
+        double valorDolares = darFormatoDosDecimales((reserva.getCostoTotal() / valorTrm));
+        return new DtoReservaCobro(reserva.getId(), reserva.getNumeroHabitacion(), reserva.getFechaSalida(),
+                reserva.getCostoTotal(), valorDolares, valorTrm, erroresProcesamiento);
     }
 
     private double obtenerValorTrm(LocalDateTime fechaSalida) {
         return servicioConsultarTrm.ejecutar(fechaSalida.toLocalDate());
     }
 
-    private void validarExisteReserva(int numeroReserva) {
-        if (!repositorioReserva.existeReserva(numeroReserva)) {
-            throw new ExcepcionSinDatos(LA_RESERVA_NO_EXISTE);
-        }
-    }
 }

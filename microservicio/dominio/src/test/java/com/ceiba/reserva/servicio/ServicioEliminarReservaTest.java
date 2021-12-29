@@ -31,6 +31,7 @@ class ServicioEliminarReservaTest {
         servicioEliminarReserva.ejecutar(numeroReserva);
 
         Mockito.verify(daoReserva).obtenerEstadoReservaReserva(numeroReserva);
+        Mockito.verify(repositorioReserva).eliminar(numeroReserva);
     }
 
     @Test
