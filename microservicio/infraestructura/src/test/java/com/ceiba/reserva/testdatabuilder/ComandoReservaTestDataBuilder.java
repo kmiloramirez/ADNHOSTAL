@@ -25,12 +25,17 @@ public class ComandoReservaTestDataBuilder {
         this.estadoReserva = "reservado";
     }
 
+    public ComandoReservaTestDataBuilder conId(int id) {
+        this.id = id;
+        return this;
+    }
+
     public ComandoReservaTestDataBuilder conEstadoReserva(String estadoReserva) {
         this.estadoReserva = estadoReserva;
         return this;
     }
 
-    public ComandoReserva build(){
-        return new ComandoReserva(id,nombre,fechaEntrada,numeroHabitacion,fechaSalida,costoTotal,estadoReserva);
+    public ComandoReserva build() {
+        return new ComandoReserva(id, nombre, fechaEntrada, numeroHabitacion, fechaSalida, costoTotal, estadoReserva);
     }
 }
