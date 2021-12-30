@@ -20,8 +20,8 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -53,7 +53,9 @@ class ConsultaControladorReservaTest {
 
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
-        assertThat(result.getResponse().getStatus()).isEqualTo(200);
+
+        Map<String,Object> resultado = objectMapper.readValue(result.getResponse().getContentAsByteArray(), new TypeReference<Map<String, Object>>() {});
+        assertEquals(numeroReserva,resultado.get("numeroReserva"));
         DtoReserva reservaEncontrada = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
                 DtoReserva.class);
         LocalDateTime fechaEntradaEsperada = LocalDateTime.of(2021, 12, 24, 15, 00, 00, 0);
@@ -78,8 +80,6 @@ class ConsultaControladorReservaTest {
 
         MvcResult result = mockMvc.perform(request).andExpect(status().isInternalServerError()).andReturn();
 
-        assertThat(result.getResponse().getStatus()).isEqualTo(500);
-
     }
 
     @Test
@@ -88,8 +88,6 @@ class ConsultaControladorReservaTest {
         MockHttpServletRequestBuilder request = get(CONSULTA_CONTROLADOR_RESERVA_LISTAR_RESERVAS);
 
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
-
-        assertThat(result.getResponse().getStatus()).isEqualTo(200);
 
         List<DtoReserva> listaReservas = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
                 new TypeReference<List<DtoReserva>>() {
@@ -106,7 +104,6 @@ class ConsultaControladorReservaTest {
 
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
-        assertThat(result.getResponse().getStatus()).isEqualTo(200);
 
         List<String> listaEstados = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
                 new TypeReference<List<String>>() {
@@ -123,7 +120,6 @@ class ConsultaControladorReservaTest {
 
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
-        assertThat(result.getResponse().getStatus()).isEqualTo(200);
 
         List<DtoReserva> listaReservas = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
                 new TypeReference<List<DtoReserva>>() {

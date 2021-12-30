@@ -4,6 +4,7 @@ import com.ceiba.ApplicationMock;
 import com.ceiba.habitacion.comando.ComandoHabitacion;
 import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
 import com.ceiba.habitacion.testdatabuilder.ComandoHabitacionTesDataBuider;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +17,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -49,8 +52,8 @@ class ComandoControladorHabitacionTest {
 
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
-        assertThat(result.getResponse().getStatus()).isEqualTo(200);
-
+        Map<String,Integer> resultado = objectMapper.readValue(result.getResponse().getContentAsByteArray(), new TypeReference<Map<String, Integer>>() {});
+        assertEquals(2,resultado.get("valor"));
         double precio = daoHabitacion.obtenerPrecioHabitacion("102");
         assertEquals(100000.0, precio);
 
