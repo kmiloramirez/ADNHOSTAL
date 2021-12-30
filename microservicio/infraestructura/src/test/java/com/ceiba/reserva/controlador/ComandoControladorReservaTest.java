@@ -2,6 +2,7 @@ package com.ceiba.reserva.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.habitacion.puerto.dao.DaoHabitacion;
+import com.ceiba.infraestructura.excepcion.ExcepcionTecnica;
 import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.modelo.dto.DtoReserva;
 import com.ceiba.reserva.modelo.dto.DtoReservaCobro;
@@ -23,6 +24,7 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -107,6 +109,7 @@ class ComandoControladorReservaTest {
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(200);
+        assertThrows(ExcepcionTecnica.class,()->daoReserva.obtenerReserva(numeroReserva));
 
     }
 
@@ -123,7 +126,8 @@ class ComandoControladorReservaTest {
         DtoReservaCobro reservaCobro = objectMapper.readValue(result.getResponse().getContentAsByteArray(),
                 DtoReservaCobro.class);
 
-        double precioHabitacion = daoHabitacion.obtenerPrecioHabitacion(reservaCobro.getNumeroHabitacion());
-        assertEquals(100000.0, precioHabitacion);
+        DtoReserva reservaActualizada = daoReserva.obtenerReserva(numeroReserva);
+        assertEquals(100000.0, reservaCobro.getCostoTotalPesos());
+        assertEquals(EstadoReserva.TERMINADA.getEstado(), reservaActualizada.getEstadoReserva());
     }
 }
