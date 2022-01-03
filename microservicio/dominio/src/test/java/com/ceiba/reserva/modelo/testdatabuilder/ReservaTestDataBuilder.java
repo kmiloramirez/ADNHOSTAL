@@ -8,20 +8,19 @@ import java.time.LocalDateTime;
 
 public class ReservaTestDataBuilder {
 
-    private static final double CERO_DOLARES =0.0;
+    private static final double CERO_DOLARES = 0.0;
 
-    private static final String  SIN_ERROR =null;
+    private static final String SIN_ERROR = null;
 
     private int id;
     private String nombre;
     private LocalDateTime fechaEntrada;
     private String numeroHabitacion;
     private LocalDateTime fechaSalida;
-    private LocalDate fechaRegistro;
+    private final LocalDate fechaRegistro;
     private double costoTotal;
     private String estadoReserva;
     private double trm;
-
 
 
     public ReservaTestDataBuilder() {
@@ -34,7 +33,7 @@ public class ReservaTestDataBuilder {
         this.fechaRegistro = fechaActual.toLocalDate();
         this.costoTotal = 100000.0;
         this.estadoReserva = "reservado";
-        this.trm=4000.0;
+        this.trm = 4000.0;
     }
 
     public ReservaTestDataBuilder conNombre(String nombre) {
@@ -74,25 +73,26 @@ public class ReservaTestDataBuilder {
     public Reserva buildActualizar() {
         return new Reserva(id, nombre, estadoReserva);
     }
+
     public Reserva buildConTodosLosDatos() {
-        return new Reserva(id, nombre,fechaEntrada,numeroHabitacion,fechaSalida,fechaRegistro,costoTotal, estadoReserva);
+        return new Reserva(id, nombre, fechaEntrada, numeroHabitacion, fechaSalida, fechaRegistro, costoTotal, estadoReserva);
     }
 
     public ReservaTestDataBuilder conCostoTotal(double costoTotal) {
-        this.costoTotal =costoTotal;
+        this.costoTotal = costoTotal;
         return this;
 
     }
 
-    public ReservaTestDataBuilder conTrm(double trm){
-        this.trm =trm;
+    public ReservaTestDataBuilder conTrm(double trm) {
+        this.trm = trm;
         return this;
     }
 
-    public DtoReservaCobro buildReservaCobrar(){
+    public DtoReservaCobro buildReservaCobrar() {
         Reserva reserva = buildConTodosLosDatos();
         return new DtoReservaCobro(reserva.getId(), reserva.getNumeroHabitacion(), reserva.getFechaSalida(),
-                reserva.getCostoTotal(),CERO_DOLARES,trm,SIN_ERROR);
+                reserva.getCostoTotal(), CERO_DOLARES, trm, SIN_ERROR);
     }
 
 

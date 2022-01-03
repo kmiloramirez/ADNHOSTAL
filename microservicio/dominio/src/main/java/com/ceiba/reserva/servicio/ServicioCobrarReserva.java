@@ -10,7 +10,7 @@ public class ServicioCobrarReserva {
     }
 
     public void ejecutar(DtoReservaCobro reservaCobro) {
-        double costoTotalDolares= reservaCobro.getCostoTotalPesos() / reservaCobro.getTrm();
+        double costoTotalDolares = reservaCobro.getCostoTotalPesos() / reservaCobro.getTrm();
         reservaCobro.setCostoTotalDolares(darFormatoDosDecimales(costoTotalDolares));
     }
 }

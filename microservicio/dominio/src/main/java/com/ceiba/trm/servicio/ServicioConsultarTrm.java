@@ -2,7 +2,6 @@ package com.ceiba.trm.servicio;
 
 import com.ceiba.trm.puerto.repositorio.RepositorioTrm;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static com.ceiba.dominio.formato.FormatoDouble.darFormatoDosDecimales;
