@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/trm")
@@ -23,6 +24,6 @@ public class ConsultaControladorTrm {
     @GetMapping
     @ApiOperation("Consultar Trm Del Dia")
     public double consultarTrmDia() {
-        return manejadorConsultaTrm.ejecutar(LocalDate.now());
+        return manejadorConsultaTrm.ejecutar(LocalDateTime.now());
     }
 }

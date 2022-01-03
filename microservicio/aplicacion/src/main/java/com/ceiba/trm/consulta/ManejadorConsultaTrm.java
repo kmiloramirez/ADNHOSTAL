@@ -4,6 +4,7 @@ import com.ceiba.trm.servicio.ServicioConsultarTrm;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
 public class ManejadorConsultaTrm {
@@ -14,7 +15,7 @@ public class ManejadorConsultaTrm {
         this.servicioConsultarTrm = servicioConsultarTrm;
     }
 
-    public double ejecutar(LocalDate fechaConsulta) {
+    public double ejecutar(LocalDateTime fechaConsulta) {
         return servicioConsultarTrm.ejecutar(fechaConsulta);
     }
 }

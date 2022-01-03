@@ -3,6 +3,7 @@ package com.ceiba.reserva.modelo.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -15,8 +16,11 @@ public class DtoReservaCobro {
     private String numeroHabitacion;
     private LocalDateTime fechaSalida;
     private double costoTotalPesos;
+    @Setter
     private double costoTotalDolares;
+    @Setter
     private double trm;
+    @Setter
     private String erroresProcesamiento;
 
 }

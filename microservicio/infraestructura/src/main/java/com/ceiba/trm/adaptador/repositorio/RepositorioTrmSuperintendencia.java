@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import javax.xml.rpc.ServiceException;
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 @Repository
@@ -26,7 +27,7 @@ public class RepositorioTrmSuperintendencia implements RepositorioTrm {
     private String endPoint;
 
     @Override
-    public double obtenerTrm(LocalDate fechaConsultar) {
+    public double obtenerTrm(LocalDateTime fechaConsultar) {
         Calendar fechaCalendar = convertirACalendar(fechaConsultar);
         try {
             TCRMServicesInterfaceProxy tcrmServicesInterfaceProxy = new TCRMServicesInterfaceProxy(endPoint);
@@ -38,7 +39,7 @@ public class RepositorioTrmSuperintendencia implements RepositorioTrm {
         }
     }
 
-    private Calendar convertirACalendar(LocalDate fechaConsultar) {
+    private Calendar convertirACalendar(LocalDateTime fechaConsultar) {
         Calendar fechaCalendar = Calendar.getInstance();
         fechaCalendar.set(fechaConsultar.getYear(), fechaConsultar.getMonthValue() - AJUSTE_MES_CALENDAR, fechaConsultar.getDayOfMonth());
         return fechaCalendar;

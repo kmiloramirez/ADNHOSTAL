@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,7 +25,7 @@ class ServicioConsultarTrmTest {
     void ejecutar() {
         double valorTrm = 4000.1899;
         double valorTrmEsperado = 4000.19;
-        LocalDate fechaConsultar = LocalDate.now();
+        LocalDateTime fechaConsultar = LocalDateTime.now();
         Mockito.doReturn(valorTrm).when(repositorioTrm).obtenerTrm(fechaConsultar);
 
         double resultado = servicioConsultarTrm.ejecutar(fechaConsultar);
