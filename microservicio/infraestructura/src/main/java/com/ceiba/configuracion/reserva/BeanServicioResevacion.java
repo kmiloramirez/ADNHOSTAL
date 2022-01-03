@@ -6,7 +6,6 @@ import com.ceiba.reserva.cobro.*;
 import com.ceiba.reserva.puerto.dao.DaoReserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.*;
-import com.ceiba.trm.servicio.ServicioConsultarTrm;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
