@@ -6,9 +6,6 @@ import static com.ceiba.dominio.formato.FormatoDouble.darFormatoDosDecimales;
 
 public class ServicioCobrarReserva {
 
-    public ServicioCobrarReserva() {
-    }
-
     public void ejecutar(DtoReservaCobro reservaCobro) {
         double costoTotalDolares = reservaCobro.getCostoTotalPesos() / reservaCobro.getTrm();
         reservaCobro.setCostoTotalDolares(darFormatoDosDecimales(costoTotalDolares));
