@@ -35,11 +35,11 @@ public class ManejadorCobroReserva {
         DtoReserva reservaConsultada = daoReserva.obtenerReserva(numeroReserva);
         Reserva reserva = fabricaReserva.crearReservaTerminada(reservaConsultada);
         servicioActualizarReserva.ejecutar(reserva);
-        DtoReservaCobro reservaCobro= fabricaReserva.crearResevaCobro(reserva);
+        DtoReservaCobro reservaCobro = fabricaReserva.crearResevaCobro(reserva);
         try {
             reservaCobro.setTrm(servicioConsultarTrm.ejecutar(reserva.getFechaSalida()));
         } catch (RuntimeException excepcionTrm) {
-            LOGGER.info(excepcionTrm.getMessage(),excepcionTrm);
+            LOGGER.info(excepcionTrm.getMessage(), excepcionTrm);
             reservaCobro.setErroresProcesamiento(excepcionTrm.getMessage());
         }
         servicioCobrarReserva.ejecutar(reservaCobro);

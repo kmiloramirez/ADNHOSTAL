@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class FabricaReserva {
 
-    private static final double CERO_DOLARES =0.0;
-    private static final double CERO_TRM =0.0;
-    private static final String  SIN_ERROR =null;
+    private static final double CERO_DOLARES = 0.0;
+    private static final double CERO_TRM = 0.0;
+    private static final String SIN_ERROR = null;
 
     public Reserva crear(ComandoReserva comandoReserva) {
         return new Reserva(comandoReserva.getNombre(), comandoReserva.getFechaEntrada(), comandoReserva.getNumeroHabitacion(),
@@ -25,16 +25,16 @@ public class FabricaReserva {
                 comandoReserva.getEstadoReserva());
     }
 
-    public Reserva crearReservaTerminada(DtoReserva dtoReserva){
-        return  new Reserva(dtoReserva.getNumeroReserva(), dtoReserva.getNombre(), dtoReserva.getFechaEntrada(),
+    public Reserva crearReservaTerminada(DtoReserva dtoReserva) {
+        return new Reserva(dtoReserva.getNumeroReserva(), dtoReserva.getNombre(), dtoReserva.getFechaEntrada(),
                 dtoReserva.getNumeroHabitacion(), dtoReserva.getFechaSalida(), dtoReserva.getFechaRegistro(),
                 dtoReserva.getCostoTotal(), EstadoReserva.TERMINADA.getEstado());
 
     }
 
-    public DtoReservaCobro crearResevaCobro(Reserva reserva){
-       return new DtoReservaCobro(reserva.getId(), reserva.getNumeroHabitacion(), reserva.getFechaSalida(),
-                reserva.getCostoTotal(),CERO_DOLARES,CERO_TRM,SIN_ERROR);
+    public DtoReservaCobro crearResevaCobro(Reserva reserva) {
+        return new DtoReservaCobro(reserva.getId(), reserva.getNumeroHabitacion(), reserva.getFechaSalida(),
+                reserva.getCostoTotal(), CERO_DOLARES, CERO_TRM, SIN_ERROR);
     }
 
 }

@@ -3,7 +3,6 @@ package com.ceiba.trm.consulta;
 import com.ceiba.trm.servicio.ServicioConsultarTrm;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Component
