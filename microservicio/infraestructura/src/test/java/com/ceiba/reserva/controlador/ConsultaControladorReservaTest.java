@@ -37,6 +37,7 @@ class ConsultaControladorReservaTest {
     private static final String CONSULTA_CONTROLADOR_RESERVA_LISTAR_RESERVAS = "/reserva/lista-reservas";
     private static final String CONSULTA_CONTROLADOR_RESERVA_ESTADOS = "/reserva/estados";
     private static final String CONSULTA_CONTROLADOR_RESERVA_RESERVAS_ESTADO = "/reserva/reserva-estado";
+    private static final String CONSULTA_CONTROLADOR_RESERVA_DOLARES= "/reserva/valor-dolares";
 
     @Autowired
     private MockMvc mockMvc;
@@ -126,5 +127,29 @@ class ConsultaControladorReservaTest {
                 });
 
         assertEquals(1, listaReservas.size());
+    }
+
+    @Test
+    void consultarValorDolares() throws Exception {
+        int numeroReserva = 1;
+        MockHttpServletRequestBuilder request = get(CONSULTA_CONTROLADOR_RESERVA_DOLARES).contentType(MediaType.APPLICATION_JSON)
+                .param("numeroReserva", String.valueOf(numeroReserva));
+
+        MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
+
+
+        Map<String,Object> resultado = objectMapper.readValue(result.getResponse().getContentAsByteArray(), new TypeReference<Map<String, Object>>() {});
+        assertEquals(numeroReserva,resultado.get("numeroReserva"));
+
+    }
+
+    @Test
+    void consultarValorDolaresCuandoNoExisteReserva() throws Exception {
+        int numeroReserva = 2;
+        MockHttpServletRequestBuilder request = get(CONSULTA_CONTROLADOR_RESERVA_DOLARES).contentType(MediaType.APPLICATION_JSON)
+                .param("numeroReserva", String.valueOf(numeroReserva));
+
+        mockMvc.perform(request).andExpect(status().isInternalServerError()).andReturn();
+
     }
 }

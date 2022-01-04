@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 public class DtoReservaCobro {
 
-    private int id;
+    private int numeroReserva;
     private String numeroHabitacion;
     private LocalDateTime fechaSalida;
     private double costoTotalPesos;

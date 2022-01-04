@@ -43,7 +43,7 @@ public class BeanServicioResevacion {
     }
 
     @Bean
-    public ServicioCobrarReserva servicioCobrarReserva() {
-        return new ServicioCobrarReserva();
+    public ServicioCobrarDolaresReserva servicioCobrarDolaresReserva() {
+        return new ServicioCobrarDolaresReserva();
     }
 }

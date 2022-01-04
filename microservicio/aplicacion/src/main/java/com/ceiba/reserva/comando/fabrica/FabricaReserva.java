@@ -16,8 +16,8 @@ public class FabricaReserva {
     private static final String SIN_ERROR = null;
 
     public Reserva crear(ComandoReserva comandoReserva) {
-        return new Reserva(comandoReserva.getNombre(), comandoReserva.getFechaEntrada(), comandoReserva.getNumeroHabitacion(),
-                comandoReserva.getFechaSalida());
+        return new Reserva(comandoReserva.getNombre(), comandoReserva.getFechaEntrada().atStartOfDay(), comandoReserva.getNumeroHabitacion(),
+                comandoReserva.getFechaSalida().atStartOfDay());
     }
 
     public Reserva crearActualizar(ComandoReserva comandoReserva) {
@@ -32,8 +32,8 @@ public class FabricaReserva {
 
     }
 
-    public DtoReservaCobro crearResevaCobro(Reserva reserva) {
-        return new DtoReservaCobro(reserva.getId(), reserva.getNumeroHabitacion(), reserva.getFechaSalida(),
+   public DtoReservaCobro crearResevaCobro(DtoReserva reserva) {
+        return new DtoReservaCobro(reserva.getNumeroReserva(), reserva.getNumeroHabitacion(), reserva.getFechaSalida(),
                 reserva.getCostoTotal(), CERO_DOLARES, CERO_TRM, SIN_ERROR);
     }
 

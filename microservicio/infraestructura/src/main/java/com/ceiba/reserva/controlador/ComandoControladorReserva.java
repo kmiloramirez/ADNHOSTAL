@@ -37,9 +37,9 @@ public class ComandoControladorReserva {
         return manejadorCrearReserva.ejecutar(comandoReserva);
     }
 
-    @PatchMapping
-    @ApiOperation("Actualizar Estado Reserva")
-    public void actualizarEstado(@RequestBody ComandoReserva comandoReserva) {
+    @PostMapping("modificar")
+    @ApiOperation("Modifica Reserva")
+    public void modificarReserva(@RequestBody ComandoReserva comandoReserva) {
         manejadorActualizarReserva.ejecutar(comandoReserva);
     }
 

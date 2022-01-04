@@ -36,6 +36,6 @@ public class ComandoReservaTestDataBuilder {
     }
 
     public ComandoReserva build() {
-        return new ComandoReserva(id, nombre, fechaEntrada, numeroHabitacion, fechaSalida, costoTotal, estadoReserva);
+        return new ComandoReserva(id, nombre, fechaEntrada.toLocalDate(), numeroHabitacion, fechaSalida.toLocalDate(), costoTotal, estadoReserva);
     }
 }

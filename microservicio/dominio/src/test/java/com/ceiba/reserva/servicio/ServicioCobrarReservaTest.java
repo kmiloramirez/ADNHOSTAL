@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ServicioCobrarReservaTest {
 
-    private ServicioCobrarReserva servicioCobrarReserva;
+    private ServicioCobrarDolaresReserva servicioCobrarReserva;
 
     @BeforeEach
     void setUp() {
-        servicioCobrarReserva = new ServicioCobrarReserva();
+        servicioCobrarReserva = new ServicioCobrarDolaresReserva();
     }
 
     @Test

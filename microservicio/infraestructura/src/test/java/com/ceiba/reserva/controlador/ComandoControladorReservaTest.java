@@ -37,6 +37,7 @@ class ComandoControladorReservaTest {
 
 
     private static final String COMANDO_CONTROLADOR_RESERVA = "/reserva";
+    private static final String COMANDO_CONTROLADOR_RESERVA_MODIFICAR = "/reserva/modificar";
 
 
     @Autowired
@@ -91,7 +92,7 @@ class ComandoControladorReservaTest {
 
         ComandoReserva comandoReserva = new ComandoReservaTestDataBuilder()
                 .conEstadoReserva(EstadoReserva.ACTIVA.getEstado()).build();
-        MockHttpServletRequestBuilder request = patch(COMANDO_CONTROLADOR_RESERVA).contentType(MediaType.APPLICATION_JSON)
+        MockHttpServletRequestBuilder request = post(COMANDO_CONTROLADOR_RESERVA_MODIFICAR).contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoReserva));
 
         mockMvc.perform(request).andExpect(status().isOk()).andReturn();
@@ -106,7 +107,7 @@ class ComandoControladorReservaTest {
 
         ComandoReserva comandoReserva = new ComandoReservaTestDataBuilder().conId(25)
                 .conEstadoReserva(EstadoReserva.ACTIVA.getEstado()).build();
-        MockHttpServletRequestBuilder request = patch(COMANDO_CONTROLADOR_RESERVA).contentType(MediaType.APPLICATION_JSON)
+        MockHttpServletRequestBuilder request = post(COMANDO_CONTROLADOR_RESERVA_MODIFICAR).contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoReserva));
 
         mockMvc.perform(request).andExpect(status().isNotFound()).andReturn();
