@@ -49,7 +49,7 @@ public class ComandoControladorReserva {
         manejadorEliminarReserva.ejecutar(numeroReserva);
     }
 
-    @PutMapping
+    @PostMapping("cobrar")
     @ApiOperation("Cobrar La Reserva")
     public DtoReservaCobro cobrarReserva(@RequestParam Integer numeroReserva) {
         return manejadorCobroReserva.ejecutar(numeroReserva);
