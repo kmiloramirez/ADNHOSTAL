@@ -38,6 +38,7 @@ class ComandoControladorReservaTest {
 
     private static final String COMANDO_CONTROLADOR_RESERVA = "/reserva";
     private static final String COMANDO_CONTROLADOR_RESERVA_MODIFICAR = "/reserva/modificar";
+    private static final String COMANDO_CONTROLADOR_RESERVA_COBRAR = "/reserva/cobrar";
 
 
     @Autowired
@@ -130,7 +131,7 @@ class ComandoControladorReservaTest {
     @Test
     void cobrarReserva() throws Exception {
         int numeroReserva = 1;
-        MockHttpServletRequestBuilder request = put(COMANDO_CONTROLADOR_RESERVA).contentType(MediaType.APPLICATION_JSON)
+        MockHttpServletRequestBuilder request = post(COMANDO_CONTROLADOR_RESERVA_COBRAR).contentType(MediaType.APPLICATION_JSON)
                 .param("numeroReserva", String.valueOf(numeroReserva));
 
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();

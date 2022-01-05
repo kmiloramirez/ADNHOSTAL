@@ -51,7 +51,7 @@ class HabitacionTest {
         BasePrueba.assertThrows(() -> {
                     habitacionTestDataBuilder.build();
                 },
-                ExcepcionValorInvalido.class, "La habitacion debe tener como minimo: 1");
+                ExcepcionValorInvalido.class, "La habitacion debe tener como minimo: 1 camas");
     }
 
     @Test
@@ -71,7 +71,7 @@ class HabitacionTest {
         BasePrueba.assertThrows(() -> {
                     habitacionTestDataBuilder.build();
                 },
-                ExcepcionValorInvalido.class, "La habitacion debe tener como maximo: 3");
+                ExcepcionValorInvalido.class, "La habitacion debe tener como maximo: 3 camas");
     }
 
     @Test

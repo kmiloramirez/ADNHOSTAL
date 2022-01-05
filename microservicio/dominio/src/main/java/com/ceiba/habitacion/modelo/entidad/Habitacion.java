@@ -7,8 +7,8 @@ import static com.ceiba.dominio.ValidadorArgumento.*;
 @Getter
 public class Habitacion {
 
-    private static final String LA_HABITACION_MINIMO_CAMA = "La habitacion debe tener como minimo: %s";
-    private static final String LA_HABITACION_MAXIMA_CAMA = "La habitacion debe tener como maximo: %s";
+    private static final String LA_HABITACION_MINIMO_CAMA = "La habitacion debe tener como minimo: %s camas";
+    private static final String LA_HABITACION_MAXIMA_CAMA = "La habitacion debe tener como maximo: %s camas";
     private static final String EL_PRECIO_DEBE_POSITIVO = "El precio de la habitacion debe ser positivo";
     private static final String SE_DEBE_INGRESAR_NUMERO_HABITACION = "Se debe agregar un numero de habitacion";
     private static final String SE_DEBE_INGRESAR_DESCRIPCION_HABITACION = "Se debe agregar un descripcion de habitacion";
